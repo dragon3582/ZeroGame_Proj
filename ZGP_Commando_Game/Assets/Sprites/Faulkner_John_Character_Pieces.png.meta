@@ -1,0 +1,1011 @@
+fileFormatVersion: 2
+guid: 76b6e7c7aa522e844a451f61d06e5ff2
+timeCreated: 1473908231
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Faulkner_John_Character_Pieces_0
+    21300002: Faulkner_John_Character_Pieces_1
+    21300004: Faulkner_John_Character_Pieces_2
+    21300006: Faulkner_John_Character_Pieces_3
+    21300008: Faulkner_John_Character_Pieces_4
+    21300010: Faulkner_John_Character_Pieces_5
+    21300012: Faulkner_John_Character_Pieces_6
+    21300014: Faulkner_John_Character_Pieces_7
+    21300016: Faulkner_John_Character_Pieces_8
+    21300018: Faulkner_John_Character_Pieces_9
+    21300020: Faulkner_John_Character_Pieces_10
+    21300022: Faulkner_John_Character_Pieces_11
+    21300024: Faulkner_John_Character_Pieces_12
+    21300026: Faulkner_John_Character_Pieces_13
+    21300028: Faulkner_John_Character_Pieces_14
+    21300030: Faulkner_John_Character_Pieces_15
+    21300032: Faulkner_John_Character_Pieces_16
+    21300034: Faulkner_John_Character_Pieces_17
+    21300036: Faulkner_John_Character_Pieces_18
+    21300038: Faulkner_John_Character_Pieces_19
+    21300040: Faulkner_John_Character_Pieces_20
+    21300042: Faulkner_John_Character_Pieces_21
+    21300044: Faulkner_John_Character_Pieces_22
+    21300046: Faulkner_John_Character_Pieces_23
+    21300048: Faulkner_John_Character_Pieces_24
+    21300050: Faulkner_John_Character_Pieces_25
+    21300052: Faulkner_John_Character_Pieces_26
+    21300054: Faulkner_John_Character_Pieces_27
+    21300056: Faulkner_John_Character_Pieces_28
+    21300058: Faulkner_John_Character_Pieces_29
+    21300060: Faulkner_John_Character_Pieces_30
+    21300062: Faulkner_John_Character_Pieces_31
+    21300064: Faulkner_John_Character_Pieces_32
+    21300066: spine 19
+    21300068: spine 20
+    21300070: spine 21
+    21300072: spine 18
+    21300074: spine 17
+    21300076: spine 16
+    21300078: Tree head
+    21300080: spine 14
+    21300082: spine 13
+    21300084: spine 15
+    21300086: spine 12
+    21300088: spine 11
+    21300090: spine 10
+    21300092: spine 7
+    21300094: spine 8
+    21300096: spine 9
+    21300098: Tree Brush
+    21300100: cactus torso
+    21300102: spine 6
+    21300104: spine 5
+    21300106: spine 4
+    21300108: eye right
+    21300110: eye left
+    21300112: spine
+    21300114: spine 2
+    21300116: spine 3
+    21300118: arm right
+    21300120: arm left
+    21300122: tree trunk
+    21300124: mask
+    21300126: leg right
+    21300128: unibrow
+    21300130: leg left
+    21300132: Faulkner_John_Character_Pieces_66
+    21300134: Faulkner_John_Character_Pieces_67
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 903
+        width: 98
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_1
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 883
+        width: 111
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_2
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 875
+        width: 125
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_3
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 877
+        width: 41
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_4
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 877
+        width: 36
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_5
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 774
+        width: 85
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_6
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 764
+        width: 35
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_7
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 764
+        width: 35
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_8
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 762
+        width: 85
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_9
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 850
+        width: 49
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_10
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 767
+        width: 66
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_11
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 757
+        width: 49
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_12
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 670
+        width: 67
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_13
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 625
+        width: 91
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_14
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 651
+        width: 91
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_15
+      rect:
+        serializedVersion: 2
+        x: 501
+        y: 650
+        width: 68
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_16
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 667
+        width: 49
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 625
+        width: 129
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_18
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 553
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_19
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 556
+        width: 26
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_20
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 553
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_21
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 551
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_22
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 564
+        width: 21
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_23
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 570
+        width: 23
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_24
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 570
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_25
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 569
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_26
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 563
+        width: 157
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_27
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 495
+        width: 49
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_28
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 495
+        width: 49
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_29
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 501
+        width: 49
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_30
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 501
+        width: 48
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_31
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 499
+        width: 9
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_32
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 498
+        width: 21
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 19
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 511
+        width: 32
+        height: 30
+      alignment: 9
+      pivot: {x: 0.88832855, y: 0.47563273}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 20
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 521
+        width: 29
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6008217, y: 0.088825226}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 21
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 525
+        width: 32
+        height: 29
+      alignment: 9
+      pivot: {x: 0.91117096, y: 0.44958708}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 18
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 469
+        width: 31
+        height: 28
+      alignment: 9
+      pivot: {x: 0.92915195, y: 0.09613582}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 17
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 475
+        width: 29
+        height: 32
+      alignment: 9
+      pivot: {x: 0.40824944, y: 0.12583256}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 16
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 482
+        width: 29
+        height: 27
+      alignment: 9
+      pivot: {x: 0.110063225, y: 0.081179015}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree head
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 314
+        width: 197
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 14
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 422
+        width: 32
+        height: 29
+      alignment: 9
+      pivot: {x: 0.1466198, y: 0.3623752}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 13
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 422
+        width: 29
+        height: 32
+      alignment: 9
+      pivot: {x: 0.38531283, y: 0.16740608}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 15
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 427
+        width: 29
+        height: 29
+      alignment: 9
+      pivot: {x: 0.86700016, y: 0.1559364}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 12
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 369
+        width: 32
+        height: 29
+      alignment: 9
+      pivot: {x: 0.91574097, y: 0.68349904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 11
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 374
+        width: 31
+        height: 29
+      alignment: 9
+      pivot: {x: 0.13521847, y: 0.27062568}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 10
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 378
+        width: 28
+        height: 30
+      alignment: 9
+      pivot: {x: 0.14364842, y: 0.18957926}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 7
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 316
+        width: 28
+        height: 32
+      alignment: 9
+      pivot: {x: 0.6187831, y: 0.85338116}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 8
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 321
+        width: 27
+        height: 31
+      alignment: 9
+      pivot: {x: 0.8941831, y: 0.82186496}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 9
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 327
+        width: 32
+        height: 30
+      alignment: 9
+      pivot: {x: 0.18819237, y: 0.499999}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tree Brush
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 232
+        width: 113
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: cactus torso
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 29
+        width: 242
+        height: 297
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 6
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 270
+        width: 31
+        height: 28
+      alignment: 9
+      pivot: {x: 0.88623637, y: 0.30994633}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 5
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 270
+        width: 30
+        height: 29
+      alignment: 9
+      pivot: {x: 0.85476685, y: 0.13300087}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 4
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 276
+        width: 29
+        height: 28
+      alignment: 9
+      pivot: {x: 0.1559364, y: 0.83259255}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eye right
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 251
+        width: 37
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: eye left
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 251
+        width: 36
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 215
+        width: 29
+        height: 28
+      alignment: 9
+      pivot: {x: 0.8440636, y: 0.8088363}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 2
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 219
+        width: 32
+        height: 30
+      alignment: 9
+      pivot: {x: 0.06347084, y: 0.4113088}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spine 3
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 215
+        width: 27
+        height: 29
+      alignment: 9
+      pivot: {x: 0.17972367, y: 0.7981878}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: arm right
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 111
+        width: 75
+        height: 78
+      alignment: 9
+      pivot: {x: 0.9003304, y: 0.4475082}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: arm left
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 111
+        width: 116
+        height: 103
+      alignment: 9
+      pivot: {x: 0.088217765, y: 0.2614973}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tree trunk
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 28
+        width: 87
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: mask
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 108
+        width: 84
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: leg right
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 81
+        height: 71
+      alignment: 9
+      pivot: {x: 0.8706762, y: 0.8844408}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: unibrow
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 66
+        width: 84
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: leg left
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 0
+        width: 91
+        height: 57
+      alignment: 9
+      pivot: {x: 0.09506963, y: 0.8591487}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_66
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 13
+        width: 34
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Faulkner_John_Character_Pieces_67
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 13
+        width: 34
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
