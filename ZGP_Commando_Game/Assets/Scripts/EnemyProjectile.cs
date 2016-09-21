@@ -6,12 +6,17 @@ public class EnemyProjectile : MonoBehaviour {
 
     public GameObject enemyBullet;
 
+    Rigidbody2D bulletFire;
+
     public float fireDelay = 3.0f;
     float cooldownTimer = 0;
+    public float bulletSpeed = 2.0f;
+    Vector2 dir = new Vector2(0, 0);
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+    {
+	    bulletFire = enemyBullet.GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +31,8 @@ public class EnemyProjectile : MonoBehaviour {
             Vector3 offset = transform.rotation * bulletOffset;
 
             Instantiate(enemyBullet, transform.position + offset, transform.rotation);
+
+            bulletFire.AddForce(dir * bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
         }
 	}
 }
