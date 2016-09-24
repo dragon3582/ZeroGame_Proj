@@ -7,6 +7,14 @@ public class PowerUpShot : MonoBehaviour {
     public GameObject spread;
     public GameObject normal;
 
+    //could use this variable to control speeds of the bullets
+    //public float speed;
+
+
+    //assign the type to each prefab of the powerup in the scene
+    
+    //might need to be reworked later to account for dropping in the 
+    //scene from enemies assuming when it's made it correctly assigns the type
     void Awake ()
     {
         switch (this.tag)
@@ -18,6 +26,7 @@ public class PowerUpShot : MonoBehaviour {
                 type = "";
                 break;
         }
+        Physics2D.IgnoreLayerCollision(8, 9);
     }
 
 }
