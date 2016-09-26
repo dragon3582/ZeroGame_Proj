@@ -6,10 +6,9 @@ public class PlayerMovement : MonoBehaviour {
     public float maxSpeed = 9f;
     public GameObject fireDirection;
     public GameObject bullet;
-    public float bulletSpeed;
+    
 
-    protected float test = 1.0f;
-
+    private float bulletSpeed = 30f;
     private Rigidbody2D _player;
     private bool _orientation = false;
     private Vector2 _currentDir;
@@ -18,6 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     private float timestamp;
     private float cooldownRate;
     private string _shotType = "";
+    private bool fireShot;
 
 	// Use this for initialization
     void Awake ()
@@ -63,12 +63,21 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetButtonDown("Fire1"))
         {
-            typeOfShot();
-            Debug.Log(_currentDir);
-            Debug.Log(_previousDir);
+            fireShot = true;
+            //typeOfShot();
+            //Debug.Log(_currentDir);
+            //Debug.Log(_previousDir);
         }
 
+    }
 
+    void FixedUpdate ()
+    {
+        if(fireShot)
+        {
+            typeOfShot();
+            fireShot = false;
+        }
     }
 
     //pick up the powerups through the trigger
@@ -83,7 +92,6 @@ public class PlayerMovement : MonoBehaviour {
             }
             Destroy(powerup.gameObject);
             Debug.Log("SPREADSHOT OBTAINED!");
-            test = 2.0f;
         }
         else if(powerup.tag == "Normal Shot")
         {
@@ -93,23 +101,23 @@ public class PlayerMovement : MonoBehaviour {
                 bullet = powerup.GetComponent<PowerUpShot>().normal;
             }
             Destroy(powerup.gameObject);
-            Debug.Log("Yea you got the normal shot again.");
+            //Debug.Log("Yea you got the normal shot again.");
         }
     }
 
     void typeOfShot()
     {
+
         if (_shotType == "")
         {
-            Debug.Log("normal attack...");
+            //Debug.Log("normal attack...");
             GameObject tempBullet;
-            cooldownRate = .25f;
+            cooldownRate = .2f;
             
             if(timestamp <= Time.time)
             {
                 timestamp = Time.time + cooldownRate;
                 tempBullet = Instantiate(bullet, fireDirection.transform.position, fireDirection.transform.rotation) as GameObject;
-                //Debug.Log("HI");
 
                 Rigidbody2D tempRigid;
                 tempRigid = tempBullet.GetComponent<Rigidbody2D>();
@@ -127,17 +135,18 @@ public class PlayerMovement : MonoBehaviour {
         //handle spread shot logic here
         else if (_shotType == "SpreadShot")
         {
-            Debug.Log("SPREADSHOT ATTACK!");
+            //Debug.Log("SPREADSHOT ATTACK!");
             GameObject tempBullet;
             GameObject tempBullet2;
             GameObject tempBullet3;
             Vector2 offset = calcOffset(_currentDir , 1);
             Vector2 offset2 = calcOffset(_currentDir, 0);
-            cooldownRate = .75f;
+            cooldownRate = .5f;
 
             if(timestamp <= Time.time)
             {
                 timestamp = Time.time + cooldownRate;
+                float torqueSpin = 50f;
 
                 tempBullet = Instantiate(bullet, fireDirection.transform.position, fireDirection.transform.rotation) as GameObject;
                 tempBullet2 = Instantiate(bullet, fireDirection.transform.position, fireDirection.transform.rotation) as GameObject;
@@ -154,18 +163,18 @@ public class PlayerMovement : MonoBehaviour {
                 tempRigid2.AddForce(offset * bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
                 tempRigid3.AddForce(offset2 * bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
 
-                tempRigid.AddTorque(bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
-                tempRigid2.AddTorque(bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
-                tempRigid3.AddTorque(bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
+                tempRigid.AddTorque((bulletSpeed * torqueSpin) * Time.deltaTime, ForceMode2D.Impulse);
+                tempRigid2.AddTorque((bulletSpeed * torqueSpin) * Time.deltaTime, ForceMode2D.Impulse);
+                tempRigid3.AddTorque((bulletSpeed * torqueSpin) * Time.deltaTime, ForceMode2D.Impulse);
 
                 Physics2D.IgnoreCollision(tempBullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
                 Physics2D.IgnoreCollision(tempBullet2.GetComponent<Collider2D>(), GetComponent<Collider2D>());
                 Physics2D.IgnoreCollision(tempBullet3.GetComponent<Collider2D>(), GetComponent<Collider2D>());
                 Physics2D.IgnoreLayerCollision(8, 8);
 
-                Destroy(tempBullet, 1.0f);
-                Destroy(tempBullet2, 1.0f);
-                Destroy(tempBullet3, 1.0f);
+                Destroy(tempBullet, .5f);
+                Destroy(tempBullet2, .5f);
+                Destroy(tempBullet3, .5f);
             }
 
         }
