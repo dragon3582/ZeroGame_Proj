@@ -10,7 +10,7 @@ public class EnemyProjectile : MonoBehaviour {
 
     public float fireDelay = 3.0f;
     float cooldownTimer = 0;
-    public float bulletSpeed = 2.0f;
+    public float bulletSpeed = 20f;
     Vector2 dir = new Vector2(2, 0);
 
 	// Use this for initialization

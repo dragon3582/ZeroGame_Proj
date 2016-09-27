@@ -20,6 +20,24 @@ public class BulletScript : MonoBehaviour {
             this.GetComponent<Rigidbody2D>().velocity *= speed; 
             //Debug.Log(this.GetComponent<Rigidbody2D>().velocity);
         }
+
+        if(this.tag == "Enemy Bullet")
+        {
+            speed = 40f;
+            this.GetComponent<Rigidbody2D>().velocity *= speed;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if(this.tag == "Normal Bullet" || this.tag == "Spread Bullet")
+        {
+            if(coll.collider.gameObject.tag == "Enemy Box")
+            {
+                Destroy(coll.gameObject);
+                Destroy(this.gameObject);
+            }
+        }
     }
 
 }
