@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody2D _player;
     private bool _orientation = false;
     private Vector2 _currentDir;
-    private Vector2 _previousDir;
     private float angle;
     private float timestamp;
     private float cooldownRate;
@@ -40,10 +39,6 @@ public class PlayerMovement : MonoBehaviour {
 
         if (moveX > .2 || moveX < -.2)
         {
-            if (_currentDir != direction)
-            {
-                _previousDir = _currentDir;
-            }
              _currentDir = direction;
             _orientation = true;
             setOrientation();
@@ -52,10 +47,6 @@ public class PlayerMovement : MonoBehaviour {
 
         if(moveY > .2 || moveY < -.2)
         {
-            if(_currentDir != direction)
-            {
-                _previousDir = _currentDir;
-            }
             _currentDir = direction;
             _orientation = false;
             setOrientation();
@@ -67,6 +58,11 @@ public class PlayerMovement : MonoBehaviour {
             //typeOfShot();
             //Debug.Log(_currentDir);
             //Debug.Log(_previousDir);
+        }
+
+        if(Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
         }
 
     }
