@@ -55,7 +55,7 @@ public class EnemyMovement : MonoBehaviour {
         if(seen)
         {
             fireShot();
-            Debug.Log(enemyBullet.GetComponent<Rigidbody2D>().velocity);
+            //Debug.Log(enemyBullet.GetComponent<Rigidbody2D>().velocity);
         }
     }
 

@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour {
     public float maxSpeed = 9f;
     public GameObject fireDirection;
     public GameObject bullet;
-    
+
 
     private float bulletSpeed = 30f;
     private Rigidbody2D _player;
@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     private float cooldownRate;
     private string _shotType = "";
     private bool fireShot;
+    private Vector2 arcSpot;
 
 	// Use this for initialization
     void Awake ()
@@ -52,6 +53,8 @@ public class PlayerMovement : MonoBehaviour {
             setOrientation();
         }
 
+        arcSpot = _currentDir * 2;
+
         if (Input.GetButtonDown("Fire1"))
         {
             fireShot = true;
@@ -59,11 +62,13 @@ public class PlayerMovement : MonoBehaviour {
             //Debug.Log(_currentDir);
             //Debug.Log(_previousDir);
         }
-
+        
         if(Input.GetKeyDown("escape"))
         {
             Application.Quit();
         }
+
+        
 
     }
 
@@ -87,7 +92,7 @@ public class PlayerMovement : MonoBehaviour {
                 bullet = powerup.GetComponent<PowerUpShot>().spread;
             }
             Destroy(powerup.gameObject);
-            Debug.Log("SPREADSHOT OBTAINED!");
+            //Debug.Log("SPREADSHOT OBTAINED!");
         }
         else if(powerup.tag == "Normal Shot")
         {
@@ -95,6 +100,17 @@ public class PlayerMovement : MonoBehaviour {
             {
                 _shotType = powerup.GetComponent<PowerUpShot>().type;
                 bullet = powerup.GetComponent<PowerUpShot>().normal;
+            }
+            Destroy(powerup.gameObject);
+            //Debug.Log("Yea you got the normal shot again.");
+        }
+
+        else if (powerup.tag == "Explosion Power")
+        {
+            if (powerup.GetComponent<PowerUpShot>())
+            {
+                _shotType = powerup.GetComponent<PowerUpShot>().type;
+                bullet = powerup.GetComponent<PowerUpShot>().explosion;
             }
             Destroy(powerup.gameObject);
             //Debug.Log("Yea you got the normal shot again.");
@@ -171,6 +187,35 @@ public class PlayerMovement : MonoBehaviour {
                 Destroy(tempBullet, .5f);
                 Destroy(tempBullet2, .5f);
                 Destroy(tempBullet3, .5f);
+            }
+
+        }
+
+        else if (_shotType == "Explosion Shot")
+        {
+            //Debug.Log("normal attack...");
+            GameObject tempBullet;
+            //GameObject tempPart;
+            cooldownRate = .4f;
+
+            if (timestamp <= Time.time)
+            {
+                timestamp = Time.time + cooldownRate;
+                
+                tempBullet = Instantiate(bullet, fireDirection.transform.position, fireDirection.transform.rotation) as GameObject;
+
+                Rigidbody2D tempRigid;
+                tempRigid = tempBullet.GetComponent<Rigidbody2D>();
+
+                tempRigid.AddForce(_currentDir * bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
+
+                Physics2D.IgnoreCollision(tempBullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+                Physics2D.IgnoreLayerCollision(8, 8);
+
+                Destroy(tempBullet, 2.0f);
+                //tempPart = Instantiate(explosionParticles, tempBullet.transform.localPosition, tempBullet.transform.rotation) as GameObject;
+                //Destroy(tempPart, 3f);
+
             }
 
         }
@@ -335,4 +380,5 @@ public class PlayerMovement : MonoBehaviour {
         else
             return ofs;
     }
+
 }

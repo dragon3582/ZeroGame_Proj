@@ -6,6 +6,7 @@ public class PowerUpShot : MonoBehaviour {
     public string type = "";
     public GameObject spread;
     public GameObject normal;
+    public GameObject explosion;
 
     //could use this variable to control speeds of the bullets
     //public float speed;
@@ -24,6 +25,9 @@ public class PowerUpShot : MonoBehaviour {
                 break;
             case "Normal Power":
                 type = "";
+                break;
+            case "Explosion Power":
+                type = "Explosion Shot";
                 break;
         }
         Physics2D.IgnoreLayerCollision(8, 9);
