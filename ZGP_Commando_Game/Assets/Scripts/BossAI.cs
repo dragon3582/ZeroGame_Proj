@@ -3,58 +3,42 @@ using System.Collections;
 
 public class BossAI : MonoBehaviour {
 
-    static bool go_left = false;
-    public int speed = 5;
+    public int speed = 2;
 
     public GameObject Boss;
 
     public GameObject enemy_bullet;
 
-    private int timer = 10;
+    private Vector2 direction = Vector2.right;
+
+    public float timer;
+
+    void Start()
+    {
+        timer = Random.Range(5, 10);
+    }
 
     void Update()
     {
-        if (go_left)
+
+        transform.Translate(direction * speed * Time.deltaTime);
+
+        timer -= Time.deltaTime;
+
+        if (timer < 0)
         {
-            
-            transform.Translate(-Vector2.right * speed * Time.deltaTime);
+            int rand_num = Random.Range(0, 2);
+            int num_chosen = rand_num;
 
-        }
-        else
-        {
-            
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
-        }
+            if (num_chosen <= 2)
+            {
 
-        /*Firing code for the boss. It has a timer.*/
-        //timer -= Time.deltaTime;
+                direction = -direction;
+                
+            }
 
-        //if (timer < 2)
-        //{
-            //int rand_num = Random.Range(0, 20);
-            //int num_chosen = rand_num;
-
-            //if (num_chosen == 2)
-            //{
-                //FIXME_VAR_TYPE fire_bullet = Instantiate(enemy_bullet, transform.position, Quaternion.identity);
-                //fire_bullet.GetComponent.< Rigidbody > ().AddForce(-Vector3.up * 10);
-            //}
-
-            //timer = 10;
-        //}
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "LeftWall")
-        {
-            go_left = false;
-        }
-        else if (col.gameObject.tag == "RightWall")
-        {
-            go_left = true;
+            timer = Random.Range(3, 7);
         }
     }
-
 
 }
