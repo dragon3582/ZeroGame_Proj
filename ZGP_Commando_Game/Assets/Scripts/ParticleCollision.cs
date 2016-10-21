@@ -8,6 +8,7 @@ public class ParticleCollision : MonoBehaviour {
         if(other.gameObject.tag == "Enemy Box")
         {
             Destroy(other.gameObject);
+            //subtract miniscule amounts of health here
         }
     }
 }

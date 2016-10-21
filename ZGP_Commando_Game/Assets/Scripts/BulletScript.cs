@@ -14,14 +14,12 @@ public class BulletScript : MonoBehaviour {
         {
             speed = 20f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
-            //Debug.Log(this.GetComponent<Rigidbody2D>().velocity);
         }
 
         if (this.tag == "Spread Bullet")
         {
             speed = 75f;
-            this.GetComponent<Rigidbody2D>().velocity *= speed; 
-            //Debug.Log(this.GetComponent<Rigidbody2D>().velocity);
+            this.GetComponent<Rigidbody2D>().velocity *= speed;
         }
 
         if(this.tag == "Enemy Bullet")
@@ -38,17 +36,14 @@ public class BulletScript : MonoBehaviour {
         }
     }
 
-    void Update()
+    void OnDisable()
     {
         if(this.tag == "Explosion Bullet")
         {
-            if(this.GetComponent<Rigidbody2D>().velocity.magnitude < .1f && count == 1)
-            {
-                GameObject temp;
-                temp = Instantiate(explosionParticles, transform.position, transform.rotation) as GameObject;
-                Destroy(temp, 2.0f);
-                count = 0;
-            }
+            GameObject temp;
+            temp = Instantiate(explosionParticles, transform.position, transform.rotation) as GameObject;
+            Destroy(temp, 2.0f);
+            count = 0;
         }
     }
 

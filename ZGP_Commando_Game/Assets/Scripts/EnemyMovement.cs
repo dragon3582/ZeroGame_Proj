@@ -92,4 +92,9 @@ public class EnemyMovement : MonoBehaviour {
 
 
     }
+
+    void OnDisable()
+    {
+        Debug.Log("I died");
+    }
 }
