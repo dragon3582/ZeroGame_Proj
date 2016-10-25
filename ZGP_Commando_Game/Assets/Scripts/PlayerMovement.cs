@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour, Idamageable<int> {
 
     public float maxSpeed = 9f;
     public GameObject fireDirection;
@@ -379,6 +379,11 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
             return ofs;
+    }
+
+    public void takeDamage(int damageTaken)
+    {
+        Debug.Log(damageTaken + " damage the player took.");
     }
 
 }

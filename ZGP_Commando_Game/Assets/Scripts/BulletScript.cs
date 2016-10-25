@@ -5,21 +5,29 @@ public class BulletScript : MonoBehaviour {
 
     public GameObject explosionParticles;
 
+    Idamageable<float> damage;
+    Idamageable<int> playerHit;
+    private float damageNorm;// = 25.0f;   original values i used before i randomized them a little
+    private float damageSpread;// = 30.0f;
+    private int enemyDamage = 1;
     private float speed;
     private int count = 1;
-	
+    private int counter = 1;
+
     void Start ()
     {
         if (this.tag == "Normal Bullet")
         {
             speed = 20f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
+            damageNorm = Mathf.Ceil(Random.Range(23f, 26f));
         }
 
         if (this.tag == "Spread Bullet")
         {
             speed = 75f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
+            damageSpread = Mathf.Ceil(Random.Range(28f, 33f));
         }
 
         if(this.tag == "Enemy Bullet")
@@ -47,15 +55,35 @@ public class BulletScript : MonoBehaviour {
         }
     }
 
+    //initialize the interface variables to call the damage function and apply the damage each bullet has
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if(this.tag == "Normal Bullet" || this.tag == "Spread Bullet")
+        damage = (Idamageable<float>)coll.gameObject.GetComponent(typeof(Idamageable<float>));
+        playerHit = (Idamageable<int>)coll.gameObject.GetComponent(typeof(Idamageable<int>));
+        if (this.tag == "Normal Bullet" || this.tag == "Spread Bullet")
         {
             if(coll.collider.gameObject.tag == "Enemy Box")
             {
-                Destroy(coll.gameObject);
+                if(this.tag == "Normal Bullet")
+                {
+                    damage.takeDamage(damageNorm);
+                }
+                else if(this.tag == "Spread Bullet")
+                {
+                    damage.takeDamage(damageSpread);
+                }
+                //Destroy(coll.gameObject);
                 Destroy(this.gameObject);
             }
+        }
+        else if(coll.collider.gameObject.tag == "Player" && counter != 0)
+        {
+            if(this.tag == "Enemy Bullet")
+            {
+                playerHit.takeDamage(enemyDamage);
+            }
+            counter--;
+            //Destroy(this.gameObject);
         }
 
     }

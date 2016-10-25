@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class EnemyMovement : MonoBehaviour {
+public class EnemyMovement : MonoBehaviour, Idamageable<float> {
 
     public GameObject enemyBullet;
     public Transform target;
-
+    public bool alive;
+    public GameObject healthCanvas;
     public float moveSpeed = 2.5f;
+
+    private GameObject healthBar;
     private float xScale;
     private float distance;
     private bool seen;
@@ -14,31 +18,54 @@ public class EnemyMovement : MonoBehaviour {
     private Vector2 test = Vector2.left;
     private float timer;
     private float waitTime = 1.5f;
+    private float health = 100.0f;
+    private float currentHealth;
+    private Color alpha;
 
     void Awake()
     {
         xScale = transform.localScale.x;
+        alive = true;
+        currentHealth = health;
+        alpha = this.gameObject.GetComponent<SpriteRenderer>().color;
+        healthBar = healthCanvas.transform.GetChild(2).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        float move = moveSpeed * Time.deltaTime;
-
-        distance = Vector2.Distance(this.transform.position, target.transform.position);
-        //Debug.Log(distance);
-        if(distance < 20f)
+        if (alive)
         {
-            seen = true;
-            StartCoroutine(checkDist(move));
+            float move = moveSpeed * Time.deltaTime;
+
+            distance = Vector2.Distance(this.transform.position, target.transform.position);
+            //Debug.Log(distance);
+            if(distance < 20f)
+            {
+                seen = true;
+                StartCoroutine(checkDist(move));
+            }
+            else if(distance > 22f)
+            {
+                seen = false;
+                StopCoroutine(checkDist(move));
+            }
+
+            if(currentHealth <= 0)
+            {
+                alive = false;
+            }
         }
-        else if(distance > 22f)
+
+        if(!alive)
         {
-            seen = false;
-            StopCoroutine(checkDist(move));
-        }
-            
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            alpha.a = .5f;
+            this.GetComponent<SpriteRenderer>().color = alpha;
+            this.gameObject.GetComponent<Collider2D>().enabled = false;
+            this.gameObject.GetComponent<EnemyMovement>().enabled = false;
+
+        }    
 
 /*
         if (transform.position.x < 0)
@@ -93,8 +120,31 @@ public class EnemyMovement : MonoBehaviour {
 
     }
 
+    public void takeDamage(float damageTaken)
+    {
+        //Debug.Log(damageTaken + " damage the enemy took.");
+        float previousHealth = currentHealth;
+        currentHealth -= damageTaken;
+        updateTheUi(previousHealth, currentHealth);
+    }
+
+    void updateTheUi(float prevHP, float currentHP)
+    {
+        //Debug.Log(healthBar);
+        currentHP = (currentHP / 100);
+        prevHP = (prevHP / 100);
+        Vector3 xscaler = healthBar.GetComponent<RectTransform>().localScale;
+        //Vector3 xscalerPrev = new Vector3(prevHP, 1, 1);
+        Vector3 xscl = new Vector3(currentHP, 1, 1);
+        //xscaler = Vector3.Lerp(xscl, xscaler, Time.deltaTime);
+        healthBar.GetComponent<RectTransform>().localScale = xscl;
+        //Debug.Log(currentHP);
+
+    }
+
     void OnDisable()
     {
-        Debug.Log("I died");
+        StopAllCoroutines();
+        //Debug.Log("I died");
     }
 }
