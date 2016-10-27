@@ -19,7 +19,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     private bool alive = true;
     private Color boss_alpha;
     private float waitTime = 1.5f;
-    private Transform directionGO;
+    private GameObject directionGO;
     private Vector2 dir;
 
     void Start()
@@ -28,7 +28,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         timer = Random.Range(2f, 7f);
         boss_fillHp = boss_healthCanvas.transform.GetChild(2).GetComponent<Image>();
         boss_alpha = this.gameObject.GetComponent<SpriteRenderer>().color;
-        directionGO = cannon.transform.GetChild(0).GetComponent<Transform>();
+        directionGO = cannon.transform.GetChild(0).gameObject;
     }
 
     void Update()
@@ -84,10 +84,10 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             Debug.Log(dir);
             GameObject tempBullet;
 
-            tempBullet = Instantiate(bossBullet, cannon.transform.position, cannon.transform.rotation) as GameObject;
+            tempBullet = Instantiate(bossBullet, cannon.transform.position, directionGO.transform.rotation) as GameObject;
 
             Rigidbody2D bullRb = tempBullet.GetComponent<Rigidbody2D>();
-            bullRb.AddForce(dir * Time.deltaTime, ForceMode2D.Impulse);
+            bullRb.AddForce((directionGO.transform.position - cannon.transform.position) * Time.deltaTime, ForceMode2D.Impulse);
             //bullRb.AddForce(Vector2.right * Time.deltaTime, ForceMode2D.Impulse);
             //bullRig.velocity = test;
             Physics2D.IgnoreCollision(tempBullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
