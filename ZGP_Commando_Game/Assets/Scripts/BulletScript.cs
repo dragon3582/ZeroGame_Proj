@@ -36,6 +36,12 @@ public class BulletScript : MonoBehaviour {
             this.GetComponent<Rigidbody2D>().velocity *= speed;
         }
 
+        if (this.tag == "Boss bullet")
+        {
+            speed = 1500f;
+            this.GetComponent<Rigidbody2D>().velocity *= speed;
+        }
+
         if (this.tag == "Explosion Bullet")
         {
             speed = 55f;

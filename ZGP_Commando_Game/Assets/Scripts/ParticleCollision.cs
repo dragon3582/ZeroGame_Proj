@@ -13,7 +13,7 @@ public class ParticleCollision : MonoBehaviour {
         if (other.gameObject.tag == "Enemy Box")
         {
             damage.takeDamage(damageBit);
-            Debug.Log(damageBit);
+            //Debug.Log(damageBit);
             //Destroy(other.gameObject);
             //subtract miniscule amounts of health here
         }

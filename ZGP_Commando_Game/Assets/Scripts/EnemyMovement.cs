@@ -18,17 +18,20 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     private Vector2 test = Vector2.left;
     private float timer;
     private float waitTime = 1.5f;
-    private float health = 100.0f;
+    private float maxHealth = 100f;
     private float currentHealth;
     private Color alpha;
+    private Image fillHp;
+    private float lerpSpeed = 3.0f;
 
     void Awake()
     {
         xScale = transform.localScale.x;
         alive = true;
-        currentHealth = health;
+        currentHealth = maxHealth;
         alpha = this.gameObject.GetComponent<SpriteRenderer>().color;
         healthBar = healthCanvas.transform.GetChild(2).gameObject;
+        fillHp = healthBar.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -117,7 +120,6 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
             timer = 0;
         }
 
-
     }
 
     public void takeDamage(float damageTaken)
@@ -125,21 +127,24 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         //Debug.Log(damageTaken + " damage the enemy took.");
         float previousHealth = currentHealth;
         currentHealth -= damageTaken;
+        //StartCoroutine(updateTheUi(previousHealth, currentHealth));
         updateTheUi(previousHealth, currentHealth);
     }
 
     void updateTheUi(float prevHP, float currentHP)
     {
-        //Debug.Log(healthBar);
-        currentHP = (currentHP / 100);
-        prevHP = (prevHP / 100);
-        Vector3 xscaler = healthBar.GetComponent<RectTransform>().localScale;
-        //Vector3 xscalerPrev = new Vector3(prevHP, 1, 1);
-        Vector3 xscl = new Vector3(currentHP, 1, 1);
-        //xscaler = Vector3.Lerp(xscl, xscaler, Time.deltaTime);
-        healthBar.GetComponent<RectTransform>().localScale = xscl;
-        //Debug.Log(currentHP);
-
+        //float timer = 0f;
+        currentHP = (currentHP / maxHealth);
+        prevHP = (prevHP / maxHealth);
+        /*
+        if (timer < lerpSpeed)
+        {
+            fillHp.fillAmount = Mathf.Lerp(fillHp.fillAmount, currentHP, (lerpSpeed/timer));
+            timer += Time.deltaTime;
+        }
+        */
+        fillHp.fillAmount = currentHP;
+        //yield return new WaitForEndOfFrame();
     }
 
     void OnDisable()
