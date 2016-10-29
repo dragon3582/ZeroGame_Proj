@@ -67,8 +67,9 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         else if(boss_currentHealth < (boss_maxHealth / 2))
         {
             enrage.SetBool("enraged", true);
-            waitTime = .15f;
-            waitTime2 = .35f;
+            //enrage.speed = 1.5f;
+            waitTime = .12f;
+            waitTime2 = .27f;
         }
         else if (boss_currentHealth > (boss_maxHealth / 2))
         {

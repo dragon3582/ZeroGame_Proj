@@ -9,7 +9,10 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     public bool alive;
     public GameObject healthCanvas;
     public float moveSpeed = 2.5f;
+    public GameObject[] powerups;
+    public Sprite[] directions;
 
+    private int drop;
     private GameObject healthBar;
     private float xScale;
     private float distance;
