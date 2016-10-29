@@ -14,7 +14,7 @@ public class BulletScript : MonoBehaviour {
     private float speed;
     private int count = 1;
     private int counter = 1;
-    private float healthRegen = 55f;
+    private float healthRegen = 65f;
 
     void Start ()
     {
