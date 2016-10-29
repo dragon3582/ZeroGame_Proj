@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour, Idamageable<int> {
 
     public float maxSpeed = 9f;
     public GameObject fireDirection;
     public GameObject bullet;
+    public GameObject hitCountGO;
+    public GameObject currentPower;
+    public Sprite[] icons;
 
 
     private float bulletSpeed = 30f;
@@ -18,11 +22,15 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     private string _shotType = "";
     private bool fireShot;
     private Vector2 arcSpot;
+    private Text _hitCountText;
+    private int _hitCount;
 
 	// Use this for initialization
     void Awake ()
     {
         _player = GetComponent<Rigidbody2D>();
+        _hitCountText = hitCountGO.GetComponent<Text>();
+        _hitCount = 0;
 	}
 	
 	// Update is called once per frame
@@ -92,6 +100,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
                 bullet = powerup.GetComponent<PowerUpShot>().spread;
             }
             Destroy(powerup.gameObject);
+            currentPower.GetComponent<Image>().sprite = icons[1];
             //Debug.Log("SPREADSHOT OBTAINED!");
         }
         else if(powerup.tag == "Normal Shot")
@@ -102,6 +111,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
                 bullet = powerup.GetComponent<PowerUpShot>().normal;
             }
             Destroy(powerup.gameObject);
+            currentPower.GetComponent<Image>().sprite = icons[0];
             //Debug.Log("Yea you got the normal shot again.");
         }
 
@@ -113,6 +123,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
                 bullet = powerup.GetComponent<PowerUpShot>().explosion;
             }
             Destroy(powerup.gameObject);
+            currentPower.GetComponent<Image>().sprite = icons[2];
             //Debug.Log("Yea you got the normal shot again.");
         }
     }
@@ -125,8 +136,9 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             //Debug.Log("normal attack...");
             GameObject tempBullet;
             cooldownRate = .2f;
-            
-            if(timestamp <= Time.time)
+            float torqueSpinFire = 10f;
+
+            if (timestamp <= Time.time)
             {
                 timestamp = Time.time + cooldownRate;
                 tempBullet = Instantiate(bullet, fireDirection.transform.position, fireDirection.transform.rotation) as GameObject;
@@ -136,6 +148,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
 
 
                 tempRigid.AddForce(_currentDir * bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
+                tempRigid.AddTorque((bulletSpeed * torqueSpinFire) * Time.deltaTime, ForceMode2D.Impulse);
 
                 Physics2D.IgnoreCollision(tempBullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
                 Physics2D.IgnoreLayerCollision(8, 8);
@@ -158,7 +171,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             if(timestamp <= Time.time)
             {
                 timestamp = Time.time + cooldownRate;
-                float torqueSpin = 50f;
+                float torqueSpin = 45f;
 
                 tempBullet = Instantiate(bullet, fireDirection.transform.position, fireDirection.transform.rotation) as GameObject;
                 tempBullet2 = Instantiate(bullet, fireDirection.transform.position, fireDirection.transform.rotation) as GameObject;
@@ -383,7 +396,9 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
 
     public void takeDamage(int damageTaken)
     {
-        Debug.Log(damageTaken + " damage the player took.");
+        _hitCount += damageTaken;
+        //Debug.Log(damageTaken + " damage the player took.");
+        _hitCountText.text = _hitCount.ToString();
     }
 
 }

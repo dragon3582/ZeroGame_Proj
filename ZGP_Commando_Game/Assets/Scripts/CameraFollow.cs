@@ -9,12 +9,19 @@ public class CameraFollow : MonoBehaviour {
     private Vector3 velocity = Vector3.zero;
     public Transform target;
 
+    private Transform target2;
+    private Vector3 point;
+
+    void Start()
+    {
+        target2 = GameObject.Find("Boss").transform;
+    }
     // Update is called once per frame
     void LateUpdate()
     {
         if (target)
         {
-            Vector3 point = GetComponent<Camera>().WorldToViewportPoint(target.position);
+            point = GetComponent<Camera>().WorldToViewportPoint(target.position);
             Vector3 delta = target.position - GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
             Vector3 destination = transform.position + delta;
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);

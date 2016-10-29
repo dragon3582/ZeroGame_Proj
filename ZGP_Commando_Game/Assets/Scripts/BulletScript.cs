@@ -4,6 +4,7 @@ using System.Collections;
 public class BulletScript : MonoBehaviour {
 
     public GameObject explosionParticles;
+    public GameObject spawner;
 
     Idamageable<float> damage;
     Idamageable<int> playerHit;
@@ -13,6 +14,7 @@ public class BulletScript : MonoBehaviour {
     private float speed;
     private int count = 1;
     private int counter = 1;
+    private float healthRegen = 55f;
 
     void Start ()
     {
@@ -38,7 +40,7 @@ public class BulletScript : MonoBehaviour {
 
         if (this.tag == "Boss bullet")
         {
-            speed = 1500f;
+            speed = 450f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
         }
 
@@ -84,9 +86,13 @@ public class BulletScript : MonoBehaviour {
         }
         else if(coll.collider.gameObject.tag == "Player" && counter != 0)
         {
-            if(this.tag == "Enemy Bullet")
+            if(this.tag == "Enemy Bullet" || this.tag == "Boss bullet")
             {
                 playerHit.takeDamage(enemyDamage);
+                if(this.tag == "Boss bullet")
+                {
+                    spawner.GetComponent<BossAI>().regenHealth(healthRegen);
+                }
             }
             counter--;
             //Destroy(this.gameObject);
