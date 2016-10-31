@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: b81c56fa09faeda469c6e3c3e69a79ae
+timeCreated: 1477896118
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Marko One
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f56d67a471cfa7642b135a5291c70ea7, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
