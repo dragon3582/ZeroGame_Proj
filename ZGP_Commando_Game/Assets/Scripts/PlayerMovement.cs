@@ -21,9 +21,11 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     private float cooldownRate;
     private string _shotType = "";
     private bool fireShot;
-    private Vector2 arcSpot;
+    //private Vector2 arcSpot;
     private Text _hitCountText;
     private int _hitCount;
+    private Animator animateController;
+    private SpriteRenderer flipper;
 
 	// Use this for initialization
     void Awake ()
@@ -31,6 +33,8 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         _player = GetComponent<Rigidbody2D>();
         _hitCountText = hitCountGO.GetComponent<Text>();
         _hitCount = 0;
+        animateController = GetComponentInChildren<Animator>();
+        flipper = this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -61,7 +65,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             setOrientation();
         }
 
-        arcSpot = _currentDir * 2;
+        //arcSpot = _currentDir * 2;
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -240,34 +244,82 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         if(_currentDir == Vector2.up)
         {
             angle = 0f;
+            animateController.SetBool("going up bool", true);
+            animateController.SetBool("going down bool", false);
+            animateController.SetBool("going right bool", false);
+            animateController.SetBool("going diagonal up bool", false);
+            animateController.SetBool("going diagonal down bool", false);
+            flipper.flipX = false;
         }
         else if(_currentDir == Vector2.one)
         {
             angle = -45f;
+            animateController.SetBool("going up bool", false);
+            animateController.SetBool("going down bool", false);
+            animateController.SetBool("going right bool", false);
+            animateController.SetBool("going diagonal up bool", true);
+            animateController.SetBool("going diagonal down bool", false);
+            flipper.flipX = false;
         }
         else if(_currentDir == Vector2.right)
         {
             angle = -90f;
+            animateController.SetBool("going up bool", false);
+            animateController.SetBool("going down bool", false);
+            animateController.SetBool("going right bool", true);
+            animateController.SetBool("going diagonal up bool", false);
+            animateController.SetBool("going diagonal down bool", false);
+            flipper.flipX = false;
         }
         else if(_currentDir == new Vector2(1,-1))
         {
             angle = -135f;
+            animateController.SetBool("going up bool", false);
+            animateController.SetBool("going down bool", false);
+            animateController.SetBool("going right bool", false);
+            animateController.SetBool("going diagonal up bool", false);
+            animateController.SetBool("going diagonal down bool", true);
+            flipper.flipX = false;
         }
         else if(_currentDir == Vector2.down)
         {
             angle = -180f;
+            animateController.SetBool("going up bool", false);
+            animateController.SetBool("going down bool", true);
+            animateController.SetBool("going right bool", false);
+            animateController.SetBool("going diagonal up bool", false);
+            animateController.SetBool("going diagonal down bool", false);
+            flipper.flipX = false;
         }
         else if(_currentDir == -Vector2.one)
         {
             angle = -225f;
+            animateController.SetBool("going up bool", false);
+            animateController.SetBool("going down bool", false);
+            animateController.SetBool("going right bool", false);
+            animateController.SetBool("going diagonal up bool", false);
+            animateController.SetBool("going diagonal down bool", true);
+            flipper.flipX = true;
         }
         else if(_currentDir == Vector2.left)
         {
             angle = -270f;
+            animateController.SetBool("going up bool", false);
+            animateController.SetBool("going down bool", false);
+            animateController.SetBool("going right bool", true);
+            animateController.SetBool("going diagonal up bool", false);
+            animateController.SetBool("going diagonal down bool", false);
+            flipper.flipX = true;
         }
         else if (_currentDir == new Vector2(-1, 1))
         {
             angle = -315f;
+            animateController.SetBool("going up bool", false);
+            animateController.SetBool("going down bool", false);
+            animateController.SetBool("going right bool", false);
+            animateController.SetBool("going diagonal up bool", true);
+            animateController.SetBool("going diagonal down bool", false);
+            flipper.flipX = true;
         }
 
 

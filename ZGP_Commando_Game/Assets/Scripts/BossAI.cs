@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class BossAI : MonoBehaviour, Idamageable<float> {
 
     public int speed = 2;
-    public Transform playerTarget;
     public GameObject bossBullet;
     public float timer;
     public float timeShot;
@@ -14,6 +13,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     public GameObject cannon;
     public GameObject cannon2;
 
+    private Transform playerTarget;
     private Vector2 direction = Vector2.right;
     private float boss_maxHealth = 1500f;
     private Image boss_fillHp;
@@ -23,8 +23,13 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     private float waitTime;// = .2f;
     private float waitTime2;// = .5f; 
     private GameObject directionGO;
-    private Vector2 dir;
+    //private Vector2 dir;
     private Animator enrage;
+
+    void Awake()
+    {
+        playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     void Start()
     {
@@ -103,7 +108,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         timeShot2 += Time.deltaTime;
         if (timeShot > waitTime)
         {
-            dir = cannon.transform.position.normalized;
+            //dir = cannon.transform.position.normalized;
             //Debug.Log(dir);
             GameObject tempBullet;
 

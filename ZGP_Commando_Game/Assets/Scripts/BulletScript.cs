@@ -12,7 +12,7 @@ public class BulletScript : MonoBehaviour {
     private float damageSpread;// = 30.0f;
     private int enemyDamage = 1;
     private float speed;
-    private int count = 1;
+    //private int count = 1;
     private int counter = 1;
     private float healthRegen = 65f;
 
@@ -48,7 +48,7 @@ public class BulletScript : MonoBehaviour {
         {
             speed = 55f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
-            count = 1;
+            //count = 1;
         }
     }
 
@@ -59,7 +59,7 @@ public class BulletScript : MonoBehaviour {
             GameObject temp;
             temp = Instantiate(explosionParticles, transform.position, transform.rotation) as GameObject;
             Destroy(temp, 2.0f);
-            count = 0;
+            //count = 0;
         }
     }
 

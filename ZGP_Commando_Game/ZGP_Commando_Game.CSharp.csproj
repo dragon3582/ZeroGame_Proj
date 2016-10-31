@@ -69,6 +69,7 @@
     <Compile Include="Assets\GhostSprites2D\Scripts\CameraController.cs" />
     <Compile Include="Assets\GhostSprites2D\Scripts\GhostSprites\GhostSprites.cs" />
     <Compile Include="Assets\Scripts\BossAI.cs" />
+    <Compile Include="Assets\Scripts\BossTrigger.cs" />
     <Compile Include="Assets\Scripts\BulletScript.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\DamageInterface.cs" />
@@ -76,9 +77,12 @@
     <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\EnemySpawn.cs" />
     <Compile Include="Assets\Scripts\HealthManager.cs" />
+    <Compile Include="Assets\Scripts\LoadBossDesert.cs" />
+    <Compile Include="Assets\Scripts\MusicAcrossScenes.cs" />
     <Compile Include="Assets\Scripts\ParticleCollision.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\PowerUpShot.cs" />
+    <Compile Include="Assets\Scripts\TextBoss.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\ImportBehaviour.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\SortingLayerExposed.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\SpriteDepthInMap.cs" />

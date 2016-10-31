@@ -12,10 +12,6 @@ public class CameraFollow : MonoBehaviour {
     private Transform target2;
     private Vector3 point;
 
-    void Start()
-    {
-        target2 = GameObject.Find("Boss").transform;
-    }
     // Update is called once per frame
     void LateUpdate()
     {

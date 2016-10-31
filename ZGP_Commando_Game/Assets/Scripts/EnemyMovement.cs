@@ -5,36 +5,44 @@ using UnityEngine.UI;
 public class EnemyMovement : MonoBehaviour, Idamageable<float> {
 
     public GameObject enemyBullet;
-    public Transform target;
     public bool alive;
     public GameObject healthCanvas;
     public float moveSpeed = 2.5f;
     public GameObject[] powerups;
     public Sprite[] directions;
 
+    private Transform target;
     private int drop;
     private GameObject healthBar;
-    private float xScale;
+    //private float xScale;
     private float distance;
     private bool seen;
     private bool running;
-    private Vector2 test = Vector2.left;
     private float timer;
-    private float waitTime = 1.5f;
+    private float waitTime = 1f;
     private float maxHealth = 100f;
     private float currentHealth;
     private Color alpha;
     private Image fillHp;
-    private float lerpSpeed = 3.0f;
+    //private float lerpSpeed = 3.0f;
+    private Animator animate;
+    private SpriteRenderer flipper;
 
     void Awake()
     {
-        xScale = transform.localScale.x;
+        //xScale = transform.localScale.x;
         alive = true;
         currentHealth = maxHealth;
         alpha = this.gameObject.GetComponent<SpriteRenderer>().color;
         healthBar = healthCanvas.transform.GetChild(2).gameObject;
         fillHp = healthBar.GetComponent<Image>();
+        animate = this.gameObject.GetComponent<Animator>();
+        flipper = this.gameObject.GetComponent<SpriteRenderer>();
+}
+
+    void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -46,14 +54,16 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
 
             distance = Vector2.Distance(this.transform.position, target.transform.position);
             //Debug.Log(distance);
-            if(distance < 20f)
+            if(distance < 23f)
             {
                 seen = true;
+                animate.SetBool("insight", true);
                 StartCoroutine(checkDist(move));
             }
-            else if(distance > 22f)
+            else if(distance > 25f)
             {
                 seen = false;
+                animate.SetBool("insight", false);
                 StopCoroutine(checkDist(move));
             }
 
@@ -70,8 +80,26 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
             this.GetComponent<SpriteRenderer>().color = alpha;
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             this.gameObject.GetComponent<EnemyMovement>().enabled = false;
+            animate.enabled = false;
 
-        }    
+            drop = Random.Range(0, 6);
+
+            GameObject tempPower;
+
+            switch(drop)
+            {
+                case 0: tempPower = Instantiate(powerups[0], this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
+                        Destroy(tempPower, 5.0f);
+                    break;
+                case 1: tempPower = Instantiate(powerups[1], this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
+                        Destroy(tempPower, 5.0f);
+                    break;
+                case 2: tempPower = Instantiate(powerups[2], this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
+                        Destroy(tempPower, 5.0f);
+                    break;
+            }
+
+        }
 
 /*
         if (transform.position.x < 0)
@@ -88,7 +116,6 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         if(seen)
         {
             fireShot();
-            //Debug.Log(enemyBullet.GetComponent<Rigidbody2D>().velocity);
         }
     }
 
@@ -96,7 +123,17 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     {
         if(seen)
         {
+            Vector3 dirWay = (transform.position - target.position).normalized;
             transform.position = Vector3.MoveTowards(transform.position, target.position, move);
+            //Debug.Log(dirWay);
+            if(dirWay.x < 0)
+            {
+                flipChar(true);
+            }
+            else if(dirWay.x > 0)
+            {
+                flipChar(false);
+            }
         }
         else
         {
@@ -148,6 +185,18 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         */
         fillHp.fillAmount = currentHP;
         //yield return new WaitForEndOfFrame();
+    }
+
+    void flipChar(bool facing)
+    {
+        if (facing)
+        {
+            flipper.flipX = true;
+        }
+        else if (!facing)
+        {
+            flipper.flipX = false;
+        }
     }
 
     void OnDisable()

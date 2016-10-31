@@ -1,9 +1,24 @@
 fileFormatVersion: 2
 guid: 8dec79cbee237dd4f87acfc632f9f050
-timeCreated: 1477716447
+timeCreated: 1477722224
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: girlProtagonist_0
+    21300002: girlProtagonist_1
+    21300004: girlProtagonist_2
+    21300006: girlProtagonist_3
+    21300008: girlProtagonist_4
+    21300010: girlProtagonist_5
+    21300012: girlProtagonist_6
+    21300014: girlProtagonist_7
+    21300016: girlProtagonist_8
+    21300018: girlProtagonist_9
+    21300020: girlProtagonist_10
+    21300022: girlProtagonist_11
+    21300024: girlProtagonist_12
+    21300026: girlProtagonist_13
+    21300028: girlProtagonist_14
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +45,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,7 +53,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -51,7 +66,202 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: girlProtagonist_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 791
+        width: 113
+        height: 315
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_1
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 794
+        width: 110
+        height: 315
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_2
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 794
+        width: 110
+        height: 315
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_3
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 799
+        width: 203
+        height: 293
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_4
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 799
+        width: 203
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_5
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 799
+        width: 203
+        height: 273
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_6
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 371
+        width: 115
+        height: 314
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_7
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 391
+        width: 116
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_8
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 391
+        width: 114
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_9
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 395
+        width: 146
+        height: 284
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_10
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 396
+        width: 153
+        height: 283
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_11
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 403
+        width: 146
+        height: 276
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 204
+        height: 295
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_13
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 0
+        width: 203
+        height: 294
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: girlProtagonist_14
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 9
+        width: 206
+        height: 285
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 
