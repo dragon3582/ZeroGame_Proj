@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\ParticleCollision.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\PowerUpShot.cs" />
+    <Compile Include="Assets\Scripts\StartText.cs" />
     <Compile Include="Assets\Scripts\TextBoss.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\ImportBehaviour.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\SortingLayerExposed.cs" />

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour {
 
@@ -9,31 +10,38 @@ public class MainMenu : MonoBehaviour {
     public Button start;
     public Button exit;
     public Button credits;
+    public Button back;
+
+    private Animation cam;
 
     // Use this for initialization
-    void Start() {
-
+    void Start()
+    {
+        cam = GetComponent<Animation>();
     }
 
-    // Update is called once per frame
-    void Update() {
-
+    void Update()
+    {
+        if (Input.GetKeyDown("escape") || Input.GetButtonDown("ESCAPE BUTTON"))
+        {
+            Application.Quit();
+        }
     }
 
     public void StartGame()
     {
-        if(Input.GetButton("StartButton"))
+        if(Input.GetButtonDown("StartButton"))
         {
-            Debug.Log("Starting game");
+            //Debug.Log("Starting game");
             SceneManager.LoadScene(1);
         }
     }
 
     public void ExitGame()
     {
-        if (Input.GetButton("ExitButton"))
+        if (Input.GetButtonDown("ExitButton"))
         {
-            Debug.Log("Thanks for playing");
+            //Debug.Log("Thanks for playing");
             Application.Quit();
         }
 
@@ -41,10 +49,20 @@ public class MainMenu : MonoBehaviour {
 
     public void Credits()
     {
-        if (Input.GetButton("Credits"))
+        if (Input.GetButtonDown("Credits"))
         {
-            Debug.Log("Enter credits");
-            SceneManager.LoadScene("Credits");
+            //Debug.Log("Enter credits");
+            cam.Play("cameraAnim");
+            EventSystem.current.SetSelectedGameObject(back.gameObject, null);
+        }
+    }
+
+    public void Backbutton()
+    {
+        if(Input.GetButtonDown("Credits"))
+        {
+            cam.Play("camBackAnim");
+            EventSystem.current.SetSelectedGameObject(start.gameObject, null);
         }
     }
 }

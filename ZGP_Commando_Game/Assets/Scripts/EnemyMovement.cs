@@ -27,6 +27,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     //private float lerpSpeed = 3.0f;
     private Animator animate;
     private SpriteRenderer flipper;
+    private AudioSource grunt;
 
     void Awake()
     {
@@ -38,6 +39,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         fillHp = healthBar.GetComponent<Image>();
         animate = this.gameObject.GetComponent<Animator>();
         flipper = this.gameObject.GetComponent<SpriteRenderer>();
+        grunt = this.gameObject.GetComponent<AudioSource>();
 }
 
     void Start()
@@ -169,6 +171,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         currentHealth -= damageTaken;
         //StartCoroutine(updateTheUi(previousHealth, currentHealth));
         updateTheUi(previousHealth, currentHealth);
+        grunt.Play();
     }
 
     void updateTheUi(float prevHP, float currentHP)

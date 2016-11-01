@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             //Debug.Log(_previousDir);
         }
         
-        if(Input.GetKeyDown("escape"))
+        if(Input.GetKeyDown("escape") || Input.GetButtonDown("ESCAPE BUTTON"))
         {
             Application.Quit();
         }

@@ -12,6 +12,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     public GameObject boss_healthCanvas;
     public GameObject cannon;
     public GameObject cannon2;
+    public GameObject winText;
 
     private Transform playerTarget;
     private Vector2 direction = Vector2.right;
@@ -25,6 +26,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     private GameObject directionGO;
     //private Vector2 dir;
     private Animator enrage;
+    private AudioSource bossGrunt;
 
     void Awake()
     {
@@ -41,6 +43,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         enrage = this.gameObject.GetComponent<Animator>();
         waitTime = .2f;
         waitTime2 = .5f;
+        bossGrunt = this.gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -92,6 +95,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             this.gameObject.GetComponent<BossAI>().enabled = false;
             this.gameObject.GetComponent<Animator>().enabled = false;
+            winText.SetActive(true);
 
         }
 
@@ -161,6 +165,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         //Debug.Log(boss_currentHealth);
         //StartCoroutine(updateTheUi(previousHealth, currentHealth));
         updateTheUi(boss_currentHealth);
+        bossGrunt.Play();
     }
 
     void updateTheUi(float currentHP)
@@ -182,7 +187,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     public void regenHealth(float hpRate)
     {
         boss_currentHealth += hpRate;
-        Debug.Log(hpRate + " health regenerated from " + boss_currentHealth + " to " + (boss_currentHealth - hpRate));
+        //Debug.Log(hpRate + " health regenerated from " + boss_currentHealth + " to " + (boss_currentHealth - hpRate));
         updateTheUi(boss_currentHealth);
     }
 

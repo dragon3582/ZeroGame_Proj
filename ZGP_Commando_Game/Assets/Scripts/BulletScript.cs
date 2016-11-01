@@ -14,10 +14,12 @@ public class BulletScript : MonoBehaviour {
     private float speed;
     //private int count = 1;
     private int counter = 1;
-    private float healthRegen = 65f;
+    private float healthRegen = 45f;
+    private AudioSource soundEffect;
 
     void Start ()
     {
+        soundEffect = this.gameObject.GetComponent<AudioSource>();
         if (this.tag == "Normal Bullet")
         {
             speed = 20f;

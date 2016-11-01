@@ -8,7 +8,7 @@ public class LoadBossDesert : MonoBehaviour {
     {
         if(coll.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }
