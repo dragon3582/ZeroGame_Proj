@@ -79,6 +79,7 @@ public class GhostSprites : MonoBehaviour
 	private int zAnchor;
 	private float alpha;
     private bool killSwitch;
+    private bool parent;
 	
 	#endregion
 	
@@ -109,7 +110,11 @@ public class GhostSprites : MonoBehaviour
 		
 		hasRigidBody2D = this.gameObject.GetComponent<Rigidbody2D>() != null ? true : false;
 		
-		ghostMaterial.Reverse();
+        hasRigidBody2D = this.gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>() != null ? true : false;
+
+        parent = this.gameObject.transform.parent.gameObject != null ? true : false;
+
+        ghostMaterial.Reverse();
 		
 	}
 	
@@ -224,6 +229,7 @@ public class GhostSprites : MonoBehaviour
 	private void Populate(Vector3 position, bool allowPositionOverride)
 	{
 		if(RenderOnMotion 
+           && !parent 
 		   && hasRigidBody2D 
 		   && gameObject.GetComponent<Rigidbody2D>().velocity == Vector2.zero 
 		   && !allowPositionOverride)
@@ -235,7 +241,21 @@ public class GhostSprites : MonoBehaviour
 			}
 			return;
 		}
-		GameObject g = new GameObject();
+        else if (RenderOnMotion
+            && parent
+            && hasRigidBody2D
+            && gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>().velocity == Vector2.zero
+            && !allowPositionOverride)
+        {
+            if (ghostList.Count > 0)
+            {
+                GameObject gone = ghostList[0];
+                ghostList.RemoveAt(0);
+                GameObject.Destroy(gone);
+            }
+            return;
+        }
+        GameObject g = new GameObject();
 		g.name = gameObject.name + " - GhostSprite";
 		g.AddComponent<SpriteRenderer>();
 		g.transform.position = position;

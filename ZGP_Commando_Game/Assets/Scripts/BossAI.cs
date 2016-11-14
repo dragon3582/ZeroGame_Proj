@@ -16,7 +16,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
 
     private Transform playerTarget;
     private Vector2 direction = Vector2.right;
-    private float boss_maxHealth = 1500f;
+    private float boss_maxHealth = 4500f;
     private Image boss_fillHp;
     private float boss_currentHealth;
     private bool alive = true;
@@ -75,15 +75,16 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         else if(boss_currentHealth < (boss_maxHealth / 2))
         {
             enrage.SetBool("enraged", true);
-            //enrage.speed = 1.5f;
-            waitTime = .12f;
-            waitTime2 = .27f;
+            // original wait times here were .12f and .27f
+            waitTime = .05f;
+            waitTime2 = .07f;
         }
         else if (boss_currentHealth > (boss_maxHealth / 2))
         {
             enrage.SetBool("enraged", false);
-            waitTime = .2f;
-            waitTime2 = .5f;
+            // original wait times were .2f and .5f
+            waitTime = .12f;
+            waitTime2 = .27f;
         }
 
         if (!alive)
@@ -143,7 +144,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             tempBullet2.GetComponent<BulletScript>().spawner = this.gameObject;
 
             Rigidbody2D bullRb2 = tempBullet2.GetComponent<Rigidbody2D>();
-            bullRb2.AddForce((playerTarget.transform.position - cannon2.transform.position) * .1f * Time.deltaTime, ForceMode2D.Impulse);
+            bullRb2.AddForce((playerTarget.transform.position - cannon2.transform.position).normalized * 2f * Time.deltaTime, ForceMode2D.Impulse);
 
             Physics2D.IgnoreCollision(tempBullet2.GetComponent<Collider2D>(), GetComponent<BoxCollider2D>());
             Physics2D.IgnoreCollision(tempBullet2.GetComponent<Collider2D>(), GetComponent<CircleCollider2D>());

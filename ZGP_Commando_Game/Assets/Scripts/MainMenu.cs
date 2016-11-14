@@ -54,6 +54,9 @@ public class MainMenu : MonoBehaviour {
             //Debug.Log("Enter credits");
             cam.Play("cameraAnim");
             EventSystem.current.SetSelectedGameObject(back.gameObject, null);
+            start.enabled = false;
+            exit.enabled = false;
+            credits.enabled = false;
         }
     }
 
@@ -63,6 +66,9 @@ public class MainMenu : MonoBehaviour {
         {
             cam.Play("camBackAnim");
             EventSystem.current.SetSelectedGameObject(start.gameObject, null);
+            start.enabled = true;
+            exit.enabled = true;
+            credits.enabled = true;
         }
     }
 }

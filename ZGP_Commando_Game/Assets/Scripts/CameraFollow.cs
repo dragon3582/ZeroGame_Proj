@@ -7,10 +7,16 @@ public class CameraFollow : MonoBehaviour {
 
     public float dampTime = 0.15f;
     private Vector3 velocity = Vector3.zero;
-    public Transform target;
+
+    private Transform target;
 
     private Transform target2;
     private Vector3 point;
+
+    void Awake()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     // Update is called once per frame
     void LateUpdate()
@@ -22,6 +28,8 @@ public class CameraFollow : MonoBehaviour {
             Vector3 destination = transform.position + delta;
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
         }
+
+        DontDestroyOnLoad(this.gameObject);
 
     }
 }

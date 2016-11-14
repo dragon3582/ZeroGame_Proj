@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour, Idamageable<int> {
 
@@ -10,7 +11,8 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     public GameObject hitCountGO;
     public GameObject currentPower;
     public Sprite[] icons;
-
+    public string _shotType;
+    public int _hitCount;
 
     private float bulletSpeed = 30f;
     private Rigidbody2D _player;
@@ -19,13 +21,12 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     private float angle;
     private float timestamp;
     private float cooldownRate;
-    private string _shotType = "";
     private bool fireShot;
     //private Vector2 arcSpot;
     private Text _hitCountText;
-    private int _hitCount;
     private Animator animateController;
     private SpriteRenderer flipper;
+    private Vector2 moving;
 
 	// Use this for initialization
     void Awake ()
@@ -33,6 +34,8 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         _player = GetComponent<Rigidbody2D>();
         _hitCountText = hitCountGO.GetComponent<Text>();
         _hitCount = 0;
+        updateHitCount();
+        _shotType = "";
         animateController = GetComponentInChildren<Animator>();
         flipper = this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
 	}
@@ -44,17 +47,19 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         float moveY = Input.GetAxisRaw("Vertical");
 
         Vector2 direction = new Vector2(moveX, moveY);
-
+        moving = direction;
         //_player.transform.position += direction * maxSpeed * Time.deltaTime;
         //_player.transform.position += transform.up * moveY * maxSpeed * Time.deltaTime;
 
         _player.transform.Translate(direction * Time.deltaTime * maxSpeed);
+        //_player.velocity = direction * Time.deltaTime * maxSpeed;
 
         if (moveX > .2 || moveX < -.2)
         {
              _currentDir = direction;
             _orientation = true;
             setOrientation();
+            //moving = true;
         }
 
 
@@ -63,8 +68,13 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             _currentDir = direction;
             _orientation = false;
             setOrientation();
+            //moving = true;
         }
 
+        //if(moveX == 0 && moveY == 0)
+        //{
+            //moving = false;
+        //}
         //arcSpot = _currentDir * 2;
 
         if (Input.GetButtonDown("Fire1"))
@@ -80,13 +90,14 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             Application.Quit();
         }
 
-        
+        DontDestroyOnLoad(this.gameObject);
 
     }
 
     void FixedUpdate ()
     {
-        if(fireShot)
+        //_player.velocity = moving * Time.deltaTime * maxSpeed;
+        if (fireShot)
         {
             typeOfShot();
             fireShot = false;
@@ -94,6 +105,8 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     }
 
     //pick up the powerups through the trigger
+    //each powerup will assign the shot type based on what the type variable is in each powerup. same with
+    //what bullet prefab is going to be shot. it will then destroy the powerup and set the current power icon 
     void OnTriggerEnter2D(Collider2D powerup)
     {
         if(powerup.tag == "Spreadshot Power")
@@ -132,14 +145,17 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         }
     }
 
+    //based on the type from the previous function above, it will shoot out in a certain pattern accordingly with a slight cooldown
     void typeOfShot()
     {
 
+        //normal shot has a blank type
         if (_shotType == "")
         {
             //Debug.Log("normal attack...");
             GameObject tempBullet;
-            cooldownRate = .2f;
+            // original cooldown was .2f
+            cooldownRate = .02f;
             float torqueSpinFire = 10f;
 
             if (timestamp <= Time.time)
@@ -161,16 +177,23 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             }
 
         }
-        //handle spread shot logic here
+
+        //the spread shot attack powerup is in this area if the type was SpreadShot
         else if (_shotType == "SpreadShot")
         {
             //Debug.Log("SPREADSHOT ATTACK!");
             GameObject tempBullet;
             GameObject tempBullet2;
             GameObject tempBullet3;
+
+            //finding the right angle to shoot the other two shots at was proving to be difficult by trying to find the angle
+            //of the direction your currently facing. so i brute forced my way to make the angle since i already knew all the
+            //possible shooting directions. aka hard coded coordinates 
             Vector2 offset = calcOffset(_currentDir , 1);
             Vector2 offset2 = calcOffset(_currentDir, 0);
-            cooldownRate = .5f;
+
+            // original cooldown was .5f
+            cooldownRate = .05f;
 
             if(timestamp <= Time.time)
             {
@@ -208,12 +231,16 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
 
         }
 
+        //this is the explosion shot. it's relatively as simple as the normal shot because it sort of is, but it instantiates 
+        //particles that do damage instead of this shot itself
         else if (_shotType == "Explosion Shot")
         {
             //Debug.Log("normal attack...");
             GameObject tempBullet;
             //GameObject tempPart;
-            cooldownRate = .4f;
+
+            // original cooldown was .4f
+            cooldownRate = .04f;
 
             if (timestamp <= Time.time)
             {
@@ -238,6 +265,8 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         }
     }
 
+    //this function was served to set the orientation of which direction you were currently facing, but in the long run it helped
+    //serve as the function that set the animation bools.
     void setOrientation()
     {
 
@@ -335,7 +364,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         }
     }
 
-    //figuring out the angle was a bit difficult, so i brute forced my way to it since i already know the directions
+    //the brute forced/hard coded coordinate directional function i mentioned earlier
     Vector2 calcOffset(Vector2 ofs, int shot)
     {
         Vector2 lvs;
@@ -446,10 +475,17 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             return ofs;
     }
 
+    //damage to increase the hitcount number
     public void takeDamage(int damageTaken)
     {
         _hitCount += damageTaken;
         //Debug.Log(damageTaken + " damage the player took.");
+        updateHitCount();
+    }
+
+    //function to update the UI hitcount
+    void updateHitCount()
+    {
         _hitCountText.text = _hitCount.ToString();
     }
 

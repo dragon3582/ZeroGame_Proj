@@ -14,7 +14,7 @@ public class BulletScript : MonoBehaviour {
     private float speed;
     //private int count = 1;
     private int counter = 1;
-    private float healthRegen = 45f;
+    private float healthRegen = 35f;
     private AudioSource soundEffect;
 
     void Start ()
@@ -22,27 +22,31 @@ public class BulletScript : MonoBehaviour {
         soundEffect = this.gameObject.GetComponent<AudioSource>();
         if (this.tag == "Normal Bullet")
         {
-            speed = 20f;
+            // original speed was 20f
+            speed = 40f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
             damageNorm = Mathf.Ceil(Random.Range(23f, 26f));
         }
 
         if (this.tag == "Spread Bullet")
         {
-            speed = 75f;
+            // original speed was 75f
+            speed = 100f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
             damageSpread = Mathf.Ceil(Random.Range(28f, 33f));
         }
 
         if(this.tag == "Enemy Bullet")
         {
-            speed = 40f;
+            // original speed was 40f before being normalized in enemy movement scrip
+            speed = 750f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
         }
 
         if (this.tag == "Boss bullet")
         {
-            speed = 450f;
+            // original speed was 450f
+            speed = 1050f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
         }
 

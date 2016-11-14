@@ -19,7 +19,8 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     private bool seen;
     private bool running;
     private float timer;
-    private float waitTime = 1f;
+    // original wait time was 1f
+    private float waitTime = .4f;
     private float maxHealth = 100f;
     private float currentHealth;
     private Color alpha;
@@ -154,7 +155,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
 
             Rigidbody2D bullRig = tempBul.GetComponent<Rigidbody2D>();
 
-            bullRig.AddForce((target.transform.position - transform.position) * Time.deltaTime, ForceMode2D.Impulse);
+            bullRig.AddForce((target.transform.position - transform.position).normalized * Time.deltaTime, ForceMode2D.Impulse);
             //bullRig.velocity = test;
             Physics2D.IgnoreCollision(tempBul.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             Destroy(tempBul, 3.0f);
