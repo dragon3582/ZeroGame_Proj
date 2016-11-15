@@ -14,7 +14,7 @@ public class BulletScript : MonoBehaviour {
     private float speed;
     //private int count = 1;
     private int counter = 1;
-    private float healthRegen = 35f;
+    private float healthRegen = 50f;
     private AudioSource soundEffect;
 
     void Start ()
