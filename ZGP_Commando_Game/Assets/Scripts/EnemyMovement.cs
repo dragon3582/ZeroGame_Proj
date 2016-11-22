@@ -4,13 +4,16 @@ using UnityEngine.UI;
 
 public class EnemyMovement : MonoBehaviour, Idamageable<float> {
 
+    [Header("Bullet being fired")]
     public GameObject enemyBullet;
+    [Header("Alive variable")]
     public bool alive;
     public GameObject healthCanvas;
     public float moveSpeed = 2.5f;
     public GameObject[] powerups;
     public Sprite[] directions;
 
+    #region private variables
     private Transform target;
     private int drop;
     private GameObject healthBar;
@@ -18,6 +21,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     private float distance;
     private bool seen;
     private bool running;
+    private int dropCount = 1;
     private float timer;
     // original wait time was 1f
     private float waitTime = .4f;
@@ -29,10 +33,14 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     private Animator animate;
     private SpriteRenderer flipper;
     private AudioSource grunt;
+    private CamShake2 cam;
+    #endregion
+
 
     void Awake()
     {
         //xScale = transform.localScale.x;
+        cam = Camera.main.gameObject.GetComponent<CamShake2>();
         alive = true;
         currentHealth = maxHealth;
         alpha = this.gameObject.GetComponent<SpriteRenderer>().color;
@@ -41,14 +49,14 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         animate = this.gameObject.GetComponent<Animator>();
         flipper = this.gameObject.GetComponent<SpriteRenderer>();
         grunt = this.gameObject.GetComponent<AudioSource>();
-}
+    }
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (alive)
@@ -76,13 +84,12 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
             }
         }
 
-        if(!alive)
+        if(!alive && dropCount == 1)
         {
             this.transform.GetChild(0).gameObject.SetActive(false);
             alpha.a = .5f;
             this.GetComponent<SpriteRenderer>().color = alpha;
             this.gameObject.GetComponent<Collider2D>().enabled = false;
-            this.gameObject.GetComponent<EnemyMovement>().enabled = false;
             animate.enabled = false;
 
             drop = Random.Range(0, 6);
@@ -101,7 +108,8 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
                         Destroy(tempPower, 5.0f);
                     break;
             }
-
+            this.gameObject.GetComponent<Rigidbody2D>().freezeRotation = false;
+            dropCount = 0;
         }
 
 /*
@@ -116,9 +124,14 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
 
     void FixedUpdate()
     {
-        if(seen)
+        if(seen && alive)
         {
             fireShot();
+        }
+
+        if(!alive)
+        {
+            flyDeath();
         }
     }
 
@@ -173,6 +186,8 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         //StartCoroutine(updateTheUi(previousHealth, currentHealth));
         updateTheUi(previousHealth, currentHealth);
         grunt.Play();
+        //CamShake.Shake(.5f, .8f);
+        cam.ShakeCamera(.5f, 1.8f);
     }
 
     void updateTheUi(float prevHP, float currentHP)
@@ -201,6 +216,18 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         {
             flipper.flipX = false;
         }
+    }
+
+    void flyDeath()
+    {
+        this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 2500f * Time.deltaTime, ForceMode2D.Force);
+        this.gameObject.GetComponent<Rigidbody2D>().AddTorque(23f * Time.deltaTime, ForceMode2D.Impulse);
+        transform.Rotate(Vector3.up * 300f * Time.deltaTime, Space.World);
+        //Vector3.Lerp(transform.rotation.y, transform.rotation.y * 180, .5f);
+        //yield return new WaitForSeconds(3.5f);
+        //this.gameObject.GetComponent<EnemyMovement>().enabled = false;
+
+        Destroy(this.gameObject, 3.5f);
     }
 
     void OnDisable()

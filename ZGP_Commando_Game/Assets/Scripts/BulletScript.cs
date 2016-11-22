@@ -5,6 +5,7 @@ public class BulletScript : MonoBehaviour {
 
     public GameObject explosionParticles;
     public GameObject spawner;
+    public GameObject particles;
 
     Idamageable<float> damage;
     Idamageable<int> playerHit;
@@ -67,6 +68,12 @@ public class BulletScript : MonoBehaviour {
             Destroy(temp, 2.0f);
             //count = 0;
         }
+        else if(this.tag == "Normal Bullet" || this.tag == "Spread Bullet")
+        {
+            GameObject temp2;
+            temp2 = Instantiate(particles, transform.position, transform.rotation) as GameObject;
+            Destroy(temp2, 5.0f);
+        }
     }
 
     //initialize the interface variables to call the damage function and apply the damage each bullet has
@@ -98,6 +105,9 @@ public class BulletScript : MonoBehaviour {
                 if(this.tag == "Boss bullet")
                 {
                     spawner.GetComponent<BossAI>().regenHealth(healthRegen);
+                    GameObject temp2;
+                    temp2 = Instantiate(particles, transform.position, transform.rotation) as GameObject;
+                    Destroy(temp2, 3.0f);
                 }
             }
             counter--;

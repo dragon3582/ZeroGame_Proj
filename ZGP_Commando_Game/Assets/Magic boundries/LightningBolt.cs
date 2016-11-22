@@ -8,7 +8,7 @@ using System.Collections;
 public class LightningBolt : MonoBehaviour
 {
 	public Transform target;
-	public int zigs = 100;
+    public int zigs;// = 550;
 	public float speed = 1f;
 	public float scale = 1f;
 	public Light startLight;

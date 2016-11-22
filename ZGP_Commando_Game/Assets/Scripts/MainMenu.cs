@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour {
     void Start()
     {
         cam = GetComponent<Animation>();
+        back.enabled = false;
     }
 
     void Update()
@@ -53,6 +54,7 @@ public class MainMenu : MonoBehaviour {
         {
             //Debug.Log("Enter credits");
             cam.Play("cameraAnim");
+            back.enabled = true;
             EventSystem.current.SetSelectedGameObject(back.gameObject, null);
             start.enabled = false;
             exit.enabled = false;
@@ -65,10 +67,11 @@ public class MainMenu : MonoBehaviour {
         if(Input.GetButtonDown("Credits"))
         {
             cam.Play("camBackAnim");
-            EventSystem.current.SetSelectedGameObject(start.gameObject, null);
             start.enabled = true;
             exit.enabled = true;
             credits.enabled = true;
+            EventSystem.current.SetSelectedGameObject(start.gameObject, null);
+            back.enabled = false;
         }
     }
 }

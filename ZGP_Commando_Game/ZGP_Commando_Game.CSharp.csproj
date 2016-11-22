@@ -73,6 +73,8 @@
     <Compile Include="Assets\Scripts\BossAI.cs" />
     <Compile Include="Assets\Scripts\BossTrigger.cs" />
     <Compile Include="Assets\Scripts\BulletScript.cs" />
+    <Compile Include="Assets\Scripts\CamShake.cs" />
+    <Compile Include="Assets\Scripts\CamShake2.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\DamageInterface.cs" />
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />

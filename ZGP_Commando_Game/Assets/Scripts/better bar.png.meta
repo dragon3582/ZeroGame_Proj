@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: 576f1b71462961842a739db09ec0c2c8
-timeCreated: 1477546870
+timeCreated: 1479500189
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: better bar_0
     21300002: better bar_1
+    21300004: better bar_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -69,6 +70,19 @@ TextureImporter:
       tessellationDetail: 0
     - serializedVersion: 2
       name: better bar_1
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 606
+        width: 166
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: better bar_2
       rect:
         serializedVersion: 2
         x: 136

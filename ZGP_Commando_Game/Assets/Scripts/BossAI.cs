@@ -14,6 +14,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     public GameObject cannon2;
     public GameObject winText;
 
+    #region private variables
     private Transform playerTarget;
     private Vector2 direction = Vector2.right;
     private float boss_maxHealth = 4500f;
@@ -27,6 +28,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     //private Vector2 dir;
     private Animator enrage;
     private AudioSource bossGrunt;
+    #endregion
 
     void Awake()
     {

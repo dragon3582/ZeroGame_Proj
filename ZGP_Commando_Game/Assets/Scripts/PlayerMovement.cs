@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     public string _shotType;
     public int _hitCount;
 
+    #region private variables
     private float bulletSpeed = 30f;
     private Rigidbody2D _player;
     private bool _orientation = false;
@@ -27,10 +28,13 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     private Animator animateController;
     private SpriteRenderer flipper;
     private Vector2 moving;
+    private CamShake2 cam;
+    #endregion
 
-	// Use this for initialization
+    
     void Awake ()
     {
+        cam = Camera.main.gameObject.GetComponent<CamShake2>();
         _player = GetComponent<Rigidbody2D>();
         _hitCountText = hitCountGO.GetComponent<Text>();
         _hitCount = 0;
@@ -40,7 +44,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         flipper = this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
 	}
 	
-	// Update is called once per frame
+	
 	void Update ()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
@@ -481,6 +485,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         _hitCount += damageTaken;
         //Debug.Log(damageTaken + " damage the player took.");
         updateHitCount();
+        //shakeCam.ShakeCamera(1f, .2f);
     }
 
     //function to update the UI hitcount
