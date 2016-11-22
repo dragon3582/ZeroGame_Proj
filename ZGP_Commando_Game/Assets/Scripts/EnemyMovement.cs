@@ -140,7 +140,9 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         if(seen)
         {
             Vector3 dirWay = (transform.position - target.position).normalized;
-            transform.position = Vector3.MoveTowards(transform.position, target.position, move);
+            float distanceCheck = Vector2.Distance(this.transform.position, target.transform.position);
+            if (distanceCheck > 10f)
+                transform.position = Vector3.MoveTowards(transform.position, target.position, move);
             //Debug.Log(dirWay);
             if(dirWay.x < 0)
             {
@@ -187,7 +189,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         updateTheUi(previousHealth, currentHealth);
         grunt.Play();
         //CamShake.Shake(.5f, .8f);
-        cam.ShakeCamera(.5f, 1.8f);
+        //cam.ShakeCamera(.5f, 1f);
     }
 
     void updateTheUi(float prevHP, float currentHP)

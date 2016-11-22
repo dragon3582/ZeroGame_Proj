@@ -74,6 +74,12 @@ public class BulletScript : MonoBehaviour {
             temp2 = Instantiate(particles, transform.position, transform.rotation) as GameObject;
             Destroy(temp2, 5.0f);
         }
+        else if (this.tag == "Enemy Bullet")
+        {
+            GameObject temp3;
+            temp3 = Instantiate(particles, transform.position, transform.rotation) as GameObject;
+            Destroy(temp3, 5.0f);
+        }
     }
 
     //initialize the interface variables to call the damage function and apply the damage each bullet has

@@ -485,7 +485,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         _hitCount += damageTaken;
         //Debug.Log(damageTaken + " damage the player took.");
         updateHitCount();
-        //shakeCam.ShakeCamera(1f, .2f);
+        cam.ShakeCamera(.5f, 1f);
     }
 
     //function to update the UI hitcount
