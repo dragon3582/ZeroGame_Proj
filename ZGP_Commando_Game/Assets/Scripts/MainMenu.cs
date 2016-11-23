@@ -31,47 +31,35 @@ public class MainMenu : MonoBehaviour {
 
     public void StartGame()
     {
-        if(Input.GetButtonDown("StartButton"))
-        {
-            //Debug.Log("Starting game");
-            SceneManager.LoadScene(1);
-        }
+        //Debug.Log("Starting game");
+        SceneManager.LoadScene(1);
     }
 
     public void ExitGame()
     {
-        if (Input.GetButtonDown("ExitButton"))
-        {
-            //Debug.Log("Thanks for playing");
-            Application.Quit();
-        }
+        //Debug.Log("Thanks for playing");
+        Application.Quit();
 
     }
 
     public void Credits()
     {
-        if (Input.GetButtonDown("Credits"))
-        {
-            //Debug.Log("Enter credits");
-            cam.Play("cameraAnim");
-            back.enabled = true;
-            EventSystem.current.SetSelectedGameObject(back.gameObject, null);
-            start.enabled = false;
-            exit.enabled = false;
-            credits.enabled = false;
-        }
+        //Debug.Log("Enter credits");
+        cam.Play("cameraAnim");
+        back.enabled = true;
+        EventSystem.current.SetSelectedGameObject(back.gameObject, null);
+        start.enabled = false;
+        exit.enabled = false;
+        credits.enabled = false;
     }
 
     public void Backbutton()
     {
-        if(Input.GetButtonDown("Credits"))
-        {
-            cam.Play("camBackAnim");
-            start.enabled = true;
-            exit.enabled = true;
-            credits.enabled = true;
-            EventSystem.current.SetSelectedGameObject(start.gameObject, null);
-            back.enabled = false;
-        }
+        cam.Play("camBackAnim");
+        start.enabled = true;
+        exit.enabled = true;
+        credits.enabled = true;
+        EventSystem.current.SetSelectedGameObject(start.gameObject, null);
+        back.enabled = false;
     }
 }

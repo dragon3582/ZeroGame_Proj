@@ -24,6 +24,8 @@ public class MusicAcrossScenes : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
 
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        
 
     }
 }
