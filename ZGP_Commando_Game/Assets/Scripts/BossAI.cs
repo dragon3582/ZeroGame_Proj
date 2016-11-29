@@ -22,7 +22,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     private float boss_maxHealth = 4500f;
     private Image boss_fillHp;
     private float boss_currentHealth;
-    private bool alive = true;
+    public bool alive;
     private Color boss_alpha;
     private float waitTime;// = .2f;
     private float waitTime2;// = .5f; 
@@ -52,6 +52,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         waitTime2 = .5f;
         bossGrunt = this.gameObject.GetComponent<AudioSource>();
         hit = false;
+        alive = true;
         spriteMat = GetComponent<SpriteRenderer>().material;
     }
 
@@ -105,8 +106,8 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             this.gameObject.GetComponent<BossAI>().enabled = false;
             this.gameObject.GetComponent<Animator>().enabled = false;
-            //StartCoroutine(deadGuy());
-            InvokeRepeating("deadGuy()", .1f, .1f);
+            StartCoroutine(deadGuy());
+            //InvokeRepeating("deadGuy()", .1f, .1f);
             winText.SetActive(true);
             portal.gameObject.SetActive(true);
 
@@ -224,14 +225,19 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
 
     IEnumerator deadGuy()
     {
-        spriteMat.SetFloat("_DissolvePower", Mathf.Clamp((spriteMat.GetFloat("_DissolvePower") - (.3f * Time.deltaTime)), 0f, .99f));
-        yield return new WaitForSeconds(5.0f);
+        while(spriteMat.GetFloat("_DissolvePower") != 0)
+        {
+            spriteMat.SetFloat("_DissolvePower", Mathf.Clamp((spriteMat.GetFloat("_DissolvePower") - (.1f * Time.deltaTime)), 0f, .99f));
+            yield return new WaitForSeconds(.005f);
+        }
+
+        yield return new WaitForSeconds(1.5f);
         Destroy(this.gameObject);
     }
 
     void OnDisable()
     {
-        CancelInvoke();
+        //CancelInvoke();
         StopAllCoroutines();
     }
 
