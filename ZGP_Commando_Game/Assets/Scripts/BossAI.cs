@@ -13,6 +13,8 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     public GameObject cannon;
     public GameObject cannon2;
     public GameObject winText;
+    public Transform portal;
+    public Sprite defaultpic;
 
     #region private variables
     private Transform playerTarget;
@@ -28,6 +30,8 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     //private Vector2 dir;
     private Animator enrage;
     private AudioSource bossGrunt;
+    private bool hit;
+    private Material spriteMat;
     #endregion
 
     void Awake()
@@ -41,11 +45,14 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         timer = Random.Range(2f, 7f);
         boss_fillHp = boss_healthCanvas.transform.GetChild(2).GetComponent<Image>();
         boss_alpha = this.gameObject.GetComponent<SpriteRenderer>().color;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = defaultpic;
         directionGO = cannon.transform.GetChild(0).gameObject;
         enrage = this.gameObject.GetComponent<Animator>();
         waitTime = .2f;
         waitTime2 = .5f;
         bossGrunt = this.gameObject.GetComponent<AudioSource>();
+        hit = false;
+        spriteMat = GetComponent<SpriteRenderer>().material;
     }
 
     void Update()
@@ -98,8 +105,16 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
             this.gameObject.GetComponent<BossAI>().enabled = false;
             this.gameObject.GetComponent<Animator>().enabled = false;
+            //StartCoroutine(deadGuy());
+            InvokeRepeating("deadGuy()", .1f, .1f);
             winText.SetActive(true);
+            portal.gameObject.SetActive(true);
 
+        }
+
+        if(hit)
+        {
+            StartCoroutine(flashHit());
         }
 
     }
@@ -169,6 +184,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         //StartCoroutine(updateTheUi(previousHealth, currentHealth));
         updateTheUi(boss_currentHealth);
         bossGrunt.Play();
+        hit = true;
     }
 
     void updateTheUi(float currentHP)
@@ -192,6 +208,31 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         boss_currentHealth += hpRate;
         //Debug.Log(hpRate + " health regenerated from " + boss_currentHealth + " to " + (boss_currentHealth - hpRate));
         updateTheUi(boss_currentHealth);
+    }
+
+    IEnumerator flashHit()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        yield return new WaitForSeconds(.1f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        hit = false;
+    }
+
+    IEnumerator deadGuy()
+    {
+        spriteMat.SetFloat("_DissolvePower", Mathf.Clamp((spriteMat.GetFloat("_DissolvePower") - (.3f * Time.deltaTime)), 0f, .99f));
+        yield return new WaitForSeconds(5.0f);
+        Destroy(this.gameObject);
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke();
+        StopAllCoroutines();
     }
 
 }

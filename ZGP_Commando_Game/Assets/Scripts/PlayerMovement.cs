@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     public Sprite[] icons;
     public string _shotType;
     public int _hitCount;
+    public Sprite[] idles;
 
     #region private variables
     private float bulletSpeed = 30f;
@@ -27,8 +28,9 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     private Text _hitCountText;
     private Animator animateController;
     private SpriteRenderer flipper;
-    private Vector2 moving;
+    private bool moving;
     private CamShake2 cam;
+    private bool hit;
     #endregion
 
     
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         _shotType = "";
         animateController = GetComponentInChildren<Animator>();
         flipper = this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        hit = false;
 	}
 	
 	
@@ -51,7 +54,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         float moveY = Input.GetAxisRaw("Vertical");
 
         Vector2 direction = new Vector2(moveX, moveY);
-        moving = direction;
+        //moving = direction;
         //_player.transform.position += direction * maxSpeed * Time.deltaTime;
         //_player.transform.position += transform.up * moveY * maxSpeed * Time.deltaTime;
 
@@ -63,7 +66,8 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
              _currentDir = direction;
             _orientation = true;
             setOrientation();
-            //moving = true;
+            moving = true;
+            animateController.enabled = true;
         }
 
 
@@ -72,14 +76,38 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             _currentDir = direction;
             _orientation = false;
             setOrientation();
-            //moving = true;
+            moving = true;
+            animateController.enabled = true;
         }
 
-        //if(moveX == 0 && moveY == 0)
-        //{
-            //moving = false;
-        //}
+        if(moveX == 0 && moveY == 0)
+        {
+            moving = false;
+        }
         //arcSpot = _currentDir * 2;
+        if (!moving)
+        {
+            //animateController.SetBool("going up bool", false);
+            //animateController.SetBool("going down bool", false);
+            //animateController.SetBool("going right bool", false);
+            //animateController.SetBool("going diagonal up bool", false);
+            //animateController.SetBool("going diagonal down bool", false);
+            animateController.enabled = false;
+            if (_currentDir == Vector2.up || _currentDir == new Vector2(-1, 1) || _currentDir == Vector2.one)
+            {
+                flipper.sprite = idles[0];
+            }
+
+            else if (_currentDir == Vector2.left || _currentDir == Vector2.right)
+            {
+                flipper.sprite = idles[1];
+            }
+
+            else if(_currentDir == Vector2.down || _currentDir == new Vector2(1, -1) || _currentDir == -Vector2.one)
+            {
+                flipper.sprite = idles[2];
+            }
+        }
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -95,6 +123,11 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        if(hit)
+        {
+            StartCoroutine(flashHit());
+        }
 
     }
 
@@ -277,11 +310,13 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         if(_currentDir == Vector2.up)
         {
             angle = 0f;
+            animateController.enabled = true;
             animateController.SetBool("going up bool", true);
             animateController.SetBool("going down bool", false);
             animateController.SetBool("going right bool", false);
             animateController.SetBool("going diagonal up bool", false);
             animateController.SetBool("going diagonal down bool", false);
+
             flipper.flipX = false;
         }
         else if(_currentDir == Vector2.one)
@@ -486,6 +521,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         //Debug.Log(damageTaken + " damage the player took.");
         updateHitCount();
         cam.ShakeCamera(.5f, 1f);
+        hit = true;
     }
 
     //function to update the UI hitcount
@@ -494,4 +530,15 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         _hitCountText.text = _hitCount.ToString();
     }
 
+    IEnumerator flashHit()
+    {
+        flipper.color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        flipper.color = Color.white;
+        yield return new WaitForSeconds(.1f);
+        flipper.color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        flipper.color = Color.white;
+        hit = false;
+    }
 }

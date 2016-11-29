@@ -1,0 +1,311 @@
+fileFormatVersion: 2
+guid: 452c7f6ae3b6a0e439a91f12bc09daa3
+timeCreated: 1480403031
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: enemySprites2_0
+    21300002: enemySprites2_1
+    21300004: enemySprites2_2
+    21300006: enemySprites2_3
+    21300008: enemySprites2_4
+    21300010: enemySprites2_5
+    21300012: enemySprites2_6
+    21300014: enemySprites2_7
+    21300016: enemySprites2_8
+    21300018: enemySprites2_9
+    21300020: enemySprites2_10
+    21300022: enemySprites2_11
+    21300024: enemySprites2_12
+    21300026: enemySprites2_13
+    21300028: enemySprites2_14
+    21300030: enemySprites2_15
+    21300032: enemySprites2_16
+    21300034: enemySprites2_17
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: enemySprites2_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1707
+        width: 298
+        height: 318
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_1
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 1707
+        width: 270
+        height: 311
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_2
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 1709
+        width: 299
+        height: 318
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_3
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 1673
+        width: 325
+        height: 396
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_4
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 1667
+        width: 251
+        height: 396
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_5
+      rect:
+        serializedVersion: 2
+        x: 1755
+        y: 1675
+        width: 293
+        height: 395
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1306
+        width: 327
+        height: 323
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_7
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 1306
+        width: 359
+        height: 329
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_8
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 1306
+        width: 327
+        height: 323
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_9
+      rect:
+        serializedVersion: 2
+        x: 1624
+        y: 1328
+        width: 68
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_10
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 909
+        width: 327
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_11
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 909
+        width: 348
+        height: 306
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_12
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 904
+        width: 328
+        height: 308
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_13
+      rect:
+        serializedVersion: 2
+        x: 1476
+        y: 1044
+        width: 92
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_14
+      rect:
+        serializedVersion: 2
+        x: 1629
+        y: 1039
+        width: 72
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_15
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 89
+        width: 458
+        height: 702
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_16
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 38
+        width: 458
+        height: 753
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: enemySprites2_17
+      rect:
+        serializedVersion: 2
+        x: 1436
+        y: 47
+        width: 499
+        height: 744
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

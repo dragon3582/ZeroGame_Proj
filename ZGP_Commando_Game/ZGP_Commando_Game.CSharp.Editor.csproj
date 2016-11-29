@@ -120,6 +120,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\GhostSprites2D\README.txt" />
+    <None Include="Assets\Sprites\enemies\dissolve.shader" />
+    <None Include="Assets\Sprites\enemies\sprite dissolve.shader" />
     <None Include="Assets\Tiled2Unity\Imported\Desert Oasis Boss_ collisions.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Desert Oasis-tiled fixed.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Desert Tutorial Level.tiled2unity.xml" />

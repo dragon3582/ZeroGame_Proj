@@ -1,13 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class StartText : MonoBehaviour {
 
-    void OnTriggerExit2D(Collider2D other)
+    private bool buttonCheck = true;
+
+    void Update()
     {
-        if(other.gameObject.tag == "Player")
+        if(Input.anyKeyDown && buttonCheck)
         {
-            this.gameObject.transform.parent.gameObject.SetActive(false);
+            StartCoroutine(startinDaGame());
+            buttonCheck = false;
+            //SceneManager.LoadScene(2);
         }
+    }
+
+    IEnumerator startinDaGame()
+    {
+        yield return new WaitForSeconds(5.0f);
+        SceneManager.LoadScene(2);
     }
 }

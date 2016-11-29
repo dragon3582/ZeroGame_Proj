@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     public GameObject healthCanvas;
     public float moveSpeed = 2.5f;
     public GameObject[] powerups;
-    public Sprite[] directions;
+    //public Sprite[] directions;
 
     #region private variables
     private Transform target;
@@ -34,6 +34,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     private SpriteRenderer flipper;
     private AudioSource grunt;
     private CamShake2 cam;
+    private bool hit;
     #endregion
 
 
@@ -112,6 +113,11 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
             dropCount = 0;
         }
 
+        if(hit)
+        {
+            StartCoroutine(flashHit());
+        }
+
 /*
         if (transform.position.x < 0)
         {
@@ -188,6 +194,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         //StartCoroutine(updateTheUi(previousHealth, currentHealth));
         updateTheUi(previousHealth, currentHealth);
         grunt.Play();
+        hit = true;
         //CamShake.Shake(.5f, .8f);
         //cam.ShakeCamera(.5f, 1f);
     }
@@ -230,6 +237,18 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         //this.gameObject.GetComponent<EnemyMovement>().enabled = false;
 
         Destroy(this.gameObject, 3.5f);
+    }
+
+    IEnumerator flashHit()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        yield return new WaitForSeconds(.1f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        hit = false;
     }
 
     void OnDisable()
