@@ -80,7 +80,6 @@
     <Compile Include="Assets\Scripts\EnemyMovement.cs" />
     <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\EnemySpawn.cs" />
-    <Compile Include="Assets\Scripts\HealthManager.cs" />
     <Compile Include="Assets\Scripts\LoadBossDesert.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\MusicAcrossScenes.cs" />
@@ -105,6 +104,8 @@
     <None Include="Assets\Tiled2Unity\Imported\Desert Oasis Boss_ collisions.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Desert Oasis-tiled fixed.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\Desert Tutorial Level.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\Forgetful Forest-Boss Area.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\Forgetful Forest2.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\_ReadMe.txt" />
     <None Include="Assets\Tiled2Unity\Imported\testDesert.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\License.txt" />

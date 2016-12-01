@@ -15,15 +15,18 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     public GameObject winText;
     public Transform portal;
     public Sprite defaultpic;
+    public GameObject deathParticles;
+    public Transform deathParticlesSpawn;
 
     #region private variables
     private Transform playerTarget;
+    private int deathCount;
     private Vector2 direction = Vector2.right;
     private float boss_maxHealth = 4500f;
     private Image boss_fillHp;
     private float boss_currentHealth;
     public bool alive;
-    private Color boss_alpha;
+    private SpriteRenderer boss_alpha;
     private float waitTime;// = .2f;
     private float waitTime2;// = .5f; 
     private GameObject directionGO;
@@ -41,10 +44,11 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
 
     void Start()
     {
+        deathCount = 1;
         boss_currentHealth = boss_maxHealth;
         timer = Random.Range(2f, 7f);
         boss_fillHp = boss_healthCanvas.transform.GetChild(2).GetComponent<Image>();
-        boss_alpha = this.gameObject.GetComponent<SpriteRenderer>().color;
+        boss_alpha = this.gameObject.GetComponent<SpriteRenderer>();
         this.gameObject.GetComponent<SpriteRenderer>().sprite = defaultpic;
         directionGO = cannon.transform.GetChild(0).gameObject;
         enrage = this.gameObject.GetComponent<Animator>();
@@ -100,16 +104,25 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         if (!alive)
         {
             this.transform.GetChild(0).gameObject.SetActive(false);
-            boss_alpha.a = .5f;
-            this.GetComponent<SpriteRenderer>().color = boss_alpha;
+            //boss_alpha.a = .5f;
+            //this.GetComponent<SpriteRenderer>().color = boss_alpha;
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-            this.gameObject.GetComponent<BossAI>().enabled = false;
+            //this.gameObject.GetComponent<BossAI>().enabled = false;
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = defaultpic;
             this.gameObject.GetComponent<Animator>().enabled = false;
             StartCoroutine(deadGuy());
             //InvokeRepeating("deadGuy()", .1f, .1f);
             winText.SetActive(true);
             portal.gameObject.SetActive(true);
+            if(deathCount == 1)
+            {
+                GameObject tempPart;
+                tempPart = Instantiate(deathParticles, deathParticlesSpawn.position, deathParticlesSpawn.rotation) as GameObject;
+                Destroy(tempPart, 13.0f);
+                deathCount--;
+            }
+            
 
         }
 
@@ -122,7 +135,10 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
 
     void FixedUpdate()
     {
-        fireShot();
+        if(alive)
+        {
+            fireShot();
+        }
     }
 
     void fireShot()
@@ -182,25 +198,26 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         //healthRegen = boss_currentHealth;
         boss_currentHealth -= damageTaken;
         //Debug.Log(boss_currentHealth);
-        //StartCoroutine(updateTheUi(previousHealth, currentHealth));
-        updateTheUi(boss_currentHealth);
+        StartCoroutine(updateTheUi(boss_currentHealth));
+        //updateTheUi(boss_currentHealth);
         bossGrunt.Play();
         hit = true;
     }
 
-    void updateTheUi(float currentHP)
+    IEnumerator updateTheUi(float currentHitP)
     {
-        //float timer = 0f;
-        currentHP = (currentHP / boss_maxHealth);
-        //hPregen = (hPregen / boss_maxHealth);
-        /*
-        if (timer < lerpSpeed)
+        float timerSec = 0f;
+        float lerpin = .3f;
+        currentHitP = (currentHitP / boss_maxHealth);
+        
+        while (timerSec < 1f)
         {
-            fillHp.fillAmount = Mathf.Lerp(fillHp.fillAmount, currentHP, (lerpSpeed/timer));
-            timer += Time.deltaTime;
+            timerSec += Time.deltaTime/lerpin;
+            boss_fillHp.fillAmount = Mathf.Lerp(boss_fillHp.fillAmount, currentHitP, timerSec);
+            yield return null;
         }
-        */
-        boss_fillHp.fillAmount = currentHP;
+        
+        //boss_fillHp.fillAmount = currentHP;
         //yield return new WaitForEndOfFrame();
     }
 
@@ -208,31 +225,49 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     {
         boss_currentHealth += hpRate;
         //Debug.Log(hpRate + " health regenerated from " + boss_currentHealth + " to " + (boss_currentHealth - hpRate));
-        updateTheUi(boss_currentHealth);
+        StartCoroutine(updateTheUi(boss_currentHealth));
     }
 
     IEnumerator flashHit()
     {
-        this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        boss_alpha.color = Color.red;
         yield return new WaitForSeconds(.1f);
-        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        boss_alpha.color = Color.white;
         yield return new WaitForSeconds(.1f);
-        this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        boss_alpha.color = Color.red;
         yield return new WaitForSeconds(.1f);
-        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        boss_alpha.color = Color.white;
         hit = false;
+        if(!alive)
+        {
+            StopCoroutine(flashHit());
+            boss_alpha.color = Color.white;
+        }
     }
 
     IEnumerator deadGuy()
     {
-        while(spriteMat.GetFloat("_DissolvePower") != 0)
+        Color temp = boss_alpha.color;
+        bool dissolving = true;
+        //while(spriteMat.GetFloat("_DissolvePower") != 0 && boss_alpha.color.a != 0)
+        if(dissolving)
         {
             spriteMat.SetFloat("_DissolvePower", Mathf.Clamp((spriteMat.GetFloat("_DissolvePower") - (.1f * Time.deltaTime)), 0f, .99f));
+            temp.a -= (.08f * Time.deltaTime);
+            boss_alpha.color = temp;
             yield return new WaitForSeconds(.005f);
+            if(spriteMat.GetFloat("_DissolvePower") == 0)
+            {
+                dissolving = false;
+            }
         }
 
-        yield return new WaitForSeconds(1.5f);
-        Destroy(this.gameObject);
+        if(!dissolving)
+        {
+            //yield return new WaitForSeconds(3.5f);
+            Destroy(this.gameObject);
+        }
+        
     }
 
     void OnDisable()

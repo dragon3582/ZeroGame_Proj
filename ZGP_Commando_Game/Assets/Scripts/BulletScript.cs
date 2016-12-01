@@ -9,6 +9,7 @@ public class BulletScript : MonoBehaviour {
 
     Idamageable<float> damage;
     Idamageable<int> playerHit;
+    private bool hitEnemy;
     private float damageNorm;// = 25.0f;   original values i used before i randomized them a little
     private float damageSpread;// = 30.0f;
     private int enemyDamage = 1;
@@ -16,11 +17,10 @@ public class BulletScript : MonoBehaviour {
     //private int count = 1;
     private int counter = 1;
     private float healthRegen = 50f;
-    private AudioSource soundEffect;
 
     void Start ()
     {
-        soundEffect = this.gameObject.GetComponent<AudioSource>();
+        hitEnemy = false;
         if (this.tag == "Normal Bullet")
         {
             // original speed was 20f
@@ -61,25 +61,29 @@ public class BulletScript : MonoBehaviour {
 
     void OnDisable()
     {
-        if(this.tag == "Explosion Bullet")
+        if(this.enabled || hitEnemy)
         {
-            GameObject temp;
-            temp = Instantiate(explosionParticles, transform.position, transform.rotation) as GameObject;
-            Destroy(temp, 2.0f);
-            //count = 0;
+            if(this.tag == "Explosion Bullet")
+            {
+                GameObject temp;
+                temp = Instantiate(explosionParticles, transform.position, transform.rotation) as GameObject;
+                Destroy(temp, 2.0f);
+                //count = 0;
+            }
+            else if(this.tag == "Normal Bullet" || this.tag == "Spread Bullet")
+            {
+                GameObject temp2;
+                temp2 = Instantiate(particles, transform.position, transform.rotation) as GameObject;
+                Destroy(temp2, 5.0f);
+            }
+            else if (this.tag == "Enemy Bullet")
+            {
+                GameObject temp3;
+                temp3 = Instantiate(particles, transform.position, transform.rotation) as GameObject;
+                Destroy(temp3, 5.0f);
+            }
         }
-        else if(this.tag == "Normal Bullet" || this.tag == "Spread Bullet")
-        {
-            GameObject temp2;
-            temp2 = Instantiate(particles, transform.position, transform.rotation) as GameObject;
-            Destroy(temp2, 5.0f);
-        }
-        else if (this.tag == "Enemy Bullet")
-        {
-            GameObject temp3;
-            temp3 = Instantiate(particles, transform.position, transform.rotation) as GameObject;
-            Destroy(temp3, 5.0f);
-        }
+
     }
 
     //initialize the interface variables to call the damage function and apply the damage each bullet has
@@ -89,8 +93,9 @@ public class BulletScript : MonoBehaviour {
         playerHit = (Idamageable<int>)coll.gameObject.GetComponent(typeof(Idamageable<int>));
         if (this.tag == "Normal Bullet" || this.tag == "Spread Bullet")
         {
-            if(coll.collider.gameObject.tag == "Enemy Box")
+            if(coll.collider.gameObject.tag == "Enemy Box" || coll.collider.gameObject.tag == "Boss")
             {
+                hitEnemy = true;
                 if(this.tag == "Normal Bullet")
                 {
                     damage.takeDamage(damageNorm);

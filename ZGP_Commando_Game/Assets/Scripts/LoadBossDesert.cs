@@ -8,6 +8,7 @@ public class LoadBossDesert : MonoBehaviour {
     {
         if(coll.gameObject.tag == "Player")
         {
+            Camera.main.GetComponent<CameraFollow>().sceneChange = true;
             SceneManager.LoadScene(3);
         }
     }

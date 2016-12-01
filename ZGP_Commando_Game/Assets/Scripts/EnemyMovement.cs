@@ -165,6 +165,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         }
     }
 
+    //fire an instantiated bullet at the players position on a slight cooldown
     void fireShot()
     {
         timer += Time.deltaTime;
@@ -182,36 +183,39 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
             Destroy(tempBul, 3.0f);
 
             timer = 0;
+
         }
 
     }
 
+    //this is where damage is calculated.
     public void takeDamage(float damageTaken)
     {
         //Debug.Log(damageTaken + " damage the enemy took.");
         float previousHealth = currentHealth;
         currentHealth -= damageTaken;
-        //StartCoroutine(updateTheUi(previousHealth, currentHealth));
-        updateTheUi(previousHealth, currentHealth);
+        StartCoroutine(updateTheUi(currentHealth));
+        //updateTheUi(previousHealth, currentHealth);
         grunt.Play();
         hit = true;
         //CamShake.Shake(.5f, .8f);
         //cam.ShakeCamera(.5f, 1f);
     }
 
-    void updateTheUi(float prevHP, float currentHP)
+    IEnumerator updateTheUi(float currentHP)
     {
-        //float timer = 0f;
+        float timerSec = 0f;
+        float lerpin = .2f;
         currentHP = (currentHP / maxHealth);
-        prevHP = (prevHP / maxHealth);
-        /*
-        if (timer < lerpSpeed)
+        
+        while (timerSec < 1f)
         {
-            fillHp.fillAmount = Mathf.Lerp(fillHp.fillAmount, currentHP, (lerpSpeed/timer));
-            timer += Time.deltaTime;
+            timerSec += Time.deltaTime/lerpin;
+            fillHp.fillAmount = Mathf.Lerp(fillHp.fillAmount, currentHP, timerSec);
+            yield return null;
         }
-        */
-        fillHp.fillAmount = currentHP;
+        
+        //fillHp.fillAmount = currentHP;
         //yield return new WaitForEndOfFrame();
     }
 
