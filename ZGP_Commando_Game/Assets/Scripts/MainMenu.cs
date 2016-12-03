@@ -11,6 +11,9 @@ public class MainMenu : MonoBehaviour {
     public Button exit;
     public Button credits;
     public Button back;
+    public Button joe;
+    public Button alice;
+    public GameObject musicGO;
 
     private Animation cam;
 
@@ -29,9 +32,28 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
-    public void StartGame()
+    public void ChooseCharacter()
     {
-        //Debug.Log("Starting game");
+        joe.gameObject.SetActive(true);
+        alice.gameObject.SetActive(true);
+        start.gameObject.SetActive(false);
+        back.gameObject.SetActive(false);
+        credits.gameObject.SetActive(false);
+        exit.gameObject.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(alice.gameObject, null);
+    }
+
+    public void JoeStartGame()
+    {
+        musicGO.GetComponent<MusicAcrossScenes>().characterString = "Joe";
+        musicGO.GetComponent<MusicAcrossScenes>().choseCharacter = true;
+        SceneManager.LoadScene(1);
+    }
+
+    public void AliceStartGame()
+    {
+        musicGO.GetComponent<MusicAcrossScenes>().characterString = "Alice";
+        musicGO.GetComponent<MusicAcrossScenes>().choseCharacter = true;
         SceneManager.LoadScene(1);
     }
 

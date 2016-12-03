@@ -20,7 +20,8 @@ public class CameraFollow : MonoBehaviour {
 
     void Awake()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        StartCoroutine(findPlayer());
+        //target = GameObject.FindGameObjectWithTag("Player").transform;
         //activeScene = SceneManager.GetActiveScene();
     }
 
@@ -92,5 +93,11 @@ public class CameraFollow : MonoBehaviour {
         target = temp;
         yield return new WaitForSeconds(.6f);
         dampTime = 0.15f;
+    }
+
+    IEnumerator findPlayer()
+    {
+        yield return new WaitForSeconds(.2f);
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 }

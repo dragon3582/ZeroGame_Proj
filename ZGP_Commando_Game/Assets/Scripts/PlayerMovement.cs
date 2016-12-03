@@ -14,8 +14,12 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     public string _shotType;
     public int _hitCount;
     public Sprite[] idles;
+    public bool male;
+    public bool female;
 
     #region private variables
+    private AudioSource audioS;
+    private GameObject shineGO;
     private float bulletSpeed = 30f;
     private Rigidbody2D _player;
     private bool _orientation = false;
@@ -36,6 +40,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     
     void Awake ()
     {
+        audioS = GetComponent<AudioSource>();
         cam = Camera.main.gameObject.GetComponent<CamShake2>();
         _player = GetComponent<Rigidbody2D>();
         _hitCountText = hitCountGO.GetComponent<Text>();
@@ -45,6 +50,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         animateController = GetComponentInChildren<Animator>();
         flipper = this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         hit = false;
+        shineGO = currentPower.transform.GetChild(0).gameObject;
 	}
 	
 	
@@ -95,17 +101,38 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             animateController.enabled = false;
             if (_currentDir == Vector2.up || _currentDir == new Vector2(-1, 1) || _currentDir == Vector2.one)
             {
-                flipper.sprite = idles[0];
+                if (female)
+                {
+                    flipper.sprite = idles[0];
+                }
+                else if(male)
+                {
+                    flipper.sprite = idles[3];
+                }
             }
 
             else if (_currentDir == Vector2.left || _currentDir == Vector2.right)
             {
-                flipper.sprite = idles[1];
+                if (female)
+                {
+                    flipper.sprite = idles[1];
+                }
+                else if (male)
+                {
+                    flipper.sprite = idles[4];
+                }
             }
 
             else if(_currentDir == Vector2.down || _currentDir == new Vector2(1, -1) || _currentDir == -Vector2.one)
             {
-                flipper.sprite = idles[2];
+                if (female)
+                {
+                    flipper.sprite = idles[2];
+                }
+                else if (male)
+                {
+                    flipper.sprite = idles[5];
+                }
             }
         }
 
@@ -146,8 +173,9 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     //what bullet prefab is going to be shot. it will then destroy the powerup and set the current power icon 
     void OnTriggerEnter2D(Collider2D powerup)
     {
-        if(powerup.tag == "Spreadshot Power")
+        if (powerup.tag == "Spreadshot Power")
         {
+            StartCoroutine(shinePowerup());
             if(powerup.GetComponent<PowerUpShot>())
             {
                 _shotType = powerup.GetComponent<PowerUpShot>().type;
@@ -155,22 +183,22 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             }
             Destroy(powerup.gameObject);
             currentPower.GetComponent<Image>().sprite = icons[1];
-            //Debug.Log("SPREADSHOT OBTAINED!");
         }
         else if(powerup.tag == "Normal Shot")
         {
-            if(powerup.GetComponent<PowerUpShot>())
+            StartCoroutine(shinePowerup());
+            if (powerup.GetComponent<PowerUpShot>())
             {
                 _shotType = powerup.GetComponent<PowerUpShot>().type;
                 bullet = powerup.GetComponent<PowerUpShot>().normal;
             }
             Destroy(powerup.gameObject);
             currentPower.GetComponent<Image>().sprite = icons[0];
-            //Debug.Log("Yea you got the normal shot again.");
         }
 
         else if (powerup.tag == "Explosion Power")
         {
+            StartCoroutine(shinePowerup());
             if (powerup.GetComponent<PowerUpShot>())
             {
                 _shotType = powerup.GetComponent<PowerUpShot>().type;
@@ -178,8 +206,38 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             }
             Destroy(powerup.gameObject);
             currentPower.GetComponent<Image>().sprite = icons[2];
-            //Debug.Log("Yea you got the normal shot again.");
         }
+    }
+
+    //coroutine to make the powerup shine after pickup
+
+    IEnumerator shinePowerup()
+    {
+        audioS.Play();
+
+        float t = 0.0f;
+        float dur = .5f;
+
+        Color temp;
+        temp = shineGO.GetComponent<Image>().color;
+
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime / dur;
+            temp.a = Mathf.Lerp(temp.a, 1f, t);
+            shineGO.GetComponent<Image>().color = temp;
+            yield return new WaitForSeconds(.015f);
+        }
+
+        t = 0.0f;
+        while (t < 1.0f)
+        {
+            t += Time.deltaTime / dur;
+            temp.a = Mathf.Lerp(temp.a, 0f, t);
+            shineGO.GetComponent<Image>().color = temp;
+            yield return new WaitForSeconds(.005f);
+        }
+
     }
 
     //based on the type from the previous function above, it will shoot out in a certain pattern accordingly with a slight cooldown

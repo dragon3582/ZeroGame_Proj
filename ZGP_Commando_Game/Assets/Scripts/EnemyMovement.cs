@@ -14,6 +14,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     //public Sprite[] directions;
 
     #region private variables
+    private GameObject[] targets;
     private Transform target;
     private int drop;
     private GameObject healthBar;
@@ -21,7 +22,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     private float distance;
     private bool seen;
     private bool running;
-    private int dropCount = 1;
+    private int dropCount = 2;
     private float timer;
     // original wait time was 1f
     private float waitTime = .4f;
@@ -42,7 +43,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     {
         //xScale = transform.localScale.x;
         cam = Camera.main.gameObject.GetComponent<CamShake2>();
-        alive = true;
+        //alive = true;
         currentHealth = maxHealth;
         alpha = this.gameObject.GetComponent<SpriteRenderer>().color;
         healthBar = healthCanvas.transform.GetChild(2).gameObject;
@@ -54,7 +55,9 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        targets = GameObject.FindGameObjectsWithTag("Player");
+        StartCoroutine(findPlayer());
+        //target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
 
@@ -135,7 +138,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
             fireShot();
         }
 
-        if(!alive)
+        if(!alive && dropCount == 0)
         {
             flyDeath();
         }
@@ -233,6 +236,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
 
     void flyDeath()
     {
+        //Debug.Log("DEADDDD");
         this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 2500f * Time.deltaTime, ForceMode2D.Force);
         this.gameObject.GetComponent<Rigidbody2D>().AddTorque(23f * Time.deltaTime, ForceMode2D.Impulse);
         transform.Rotate(Vector3.up * 300f * Time.deltaTime, Space.World);
@@ -253,6 +257,20 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
         yield return new WaitForSeconds(.1f);
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         hit = false;
+    }
+
+    IEnumerator findPlayer()
+    {
+        yield return new WaitForSeconds(.1f);
+        for(int i = 0; i < targets.Length; i++)
+        {
+            if(targets[i])
+            {
+                target = targets[i].transform;
+            }
+        }
+        alive = true;
+        dropCount = 1;
     }
 
     void OnDisable()

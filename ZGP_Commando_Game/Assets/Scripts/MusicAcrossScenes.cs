@@ -8,7 +8,13 @@ public class MusicAcrossScenes : MonoBehaviour {
     public AudioClip forestTrack;
     public AudioClip forestFinale;
     public bool switchingAudio;
+    public string characterString;
+    public bool choseCharacter;
+    public GameObject joe;
+    public GameObject alice;
 
+    private GameObject joeChar;
+    private GameObject aliceChar;
     private int count;
     private AudioSource audioVol;
     private static MusicAcrossScenes instance = null;
@@ -41,6 +47,10 @@ public class MusicAcrossScenes : MonoBehaviour {
     
     void Update()
     {
+        if(SceneManager.GetActiveScene().name == "MainSceneAD" && choseCharacter)
+        {
+            whichChar();
+        }
         if(SceneManager.GetActiveScene().name == "Forgetful forest" && switchingAudio)
         {
             if(count == 1)
@@ -95,5 +105,20 @@ public class MusicAcrossScenes : MonoBehaviour {
         }
         switchingAudio = false;
         count = 1;
+    }
+
+    void whichChar()
+    {
+        choseCharacter = false;
+        joeChar = GameObject.Find("Player Male");
+        aliceChar = GameObject.Find("Player Female");
+        if(characterString == "Joe")
+        {
+            Destroy(aliceChar.gameObject);
+        }
+        else if(characterString == "Alice")
+        {
+            Destroy(joeChar.gameObject);
+        }
     }
 }
