@@ -11,6 +11,8 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     public GameObject healthCanvas;
     public float moveSpeed = 2.5f;
     public GameObject[] powerups;
+    public bool tree;
+    public bool cacti;
     //public Sprite[] directions;
 
     #region private variables
@@ -180,7 +182,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
 
             Rigidbody2D bullRig = tempBul.GetComponent<Rigidbody2D>();
 
-            bullRig.AddForce((target.transform.position - transform.position).normalized * Time.deltaTime, ForceMode2D.Impulse);
+            bullRig.AddForce((target.transform.position - transform.position).normalized * Time.deltaTime * 15f, ForceMode2D.Impulse);
             //bullRig.velocity = test;
             Physics2D.IgnoreCollision(tempBul.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             Destroy(tempBul, 3.0f);
@@ -192,9 +194,23 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     }
 
     //this is where damage is calculated.
-    public void takeDamage(float damageTaken)
+    public void takeDamage(float damageTaken, float multiplier, int bulletCheck)
     {
-        //Debug.Log(damageTaken + " damage the enemy took.");
+        if(cacti && bulletCheck == 2)
+        {
+            Debug.Log("damage boost ice on catci!");
+            damageTaken += (damageTaken * multiplier);
+        }
+        else if(tree && bulletCheck == 1)
+        {
+            Debug.Log("damage boost fire on tree!");
+            damageTaken += (damageTaken * multiplier);
+        }
+        else
+        {
+            Debug.Log("no boost");
+        }
+
         float previousHealth = currentHealth;
         currentHealth -= damageTaken;
         StartCoroutine(updateTheUi(currentHealth));

@@ -573,12 +573,12 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     }
 
     //damage to increase the hitcount number
-    public void takeDamage(int damageTaken)
+    public void takeDamage(int damageTaken, float nothin, int nothin2)
     {
         _hitCount += damageTaken;
         //Debug.Log(damageTaken + " damage the player took.");
         updateHitCount();
-        cam.ShakeCamera(.5f, 1f);
+        cam.ShakeCamera(.35f, 1f);
         hit = true;
     }
 

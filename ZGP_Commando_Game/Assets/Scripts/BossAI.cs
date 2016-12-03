@@ -9,9 +9,11 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     public float timer;
     public float timeShot;
     public float timeShot2;
+    public float timeShot3;
     public GameObject boss_healthCanvas;
     public GameObject cannon;
     public GameObject cannon2;
+    public GameObject cannon3;
     public GameObject winText;
     public Transform portal;
     public Sprite defaultpic;
@@ -29,7 +31,9 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     private SpriteRenderer boss_alpha;
     private float waitTime;// = .2f;
     private float waitTime2;// = .5f; 
+    private float waitTime3;
     private GameObject directionGO;
+    private GameObject directionCannon3;
     //private Vector2 dir;
     private Animator enrage;
     private AudioSource bossGrunt;
@@ -51,9 +55,14 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         boss_alpha = this.gameObject.GetComponent<SpriteRenderer>();
         this.gameObject.GetComponent<SpriteRenderer>().sprite = defaultpic;
         directionGO = cannon.transform.GetChild(0).gameObject;
+        if(cannon3)
+        {
+            directionCannon3 = cannon3.transform.GetChild(0).gameObject;
+        }
         enrage = this.gameObject.GetComponent<Animator>();
         waitTime = .2f;
         waitTime2 = .5f;
+        waitTime3 = .2f;
         bossGrunt = this.gameObject.GetComponent<AudioSource>();
         hit = false;
         alive = true;
@@ -92,6 +101,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             // original wait times here were .12f and .27f
             waitTime = .05f;
             waitTime2 = .07f;
+            waitTime3 = .05f;
         }
         else if (boss_currentHealth > (boss_maxHealth / 2))
         {
@@ -99,6 +109,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             // original wait times were .2f and .5f
             waitTime = .12f;
             waitTime2 = .27f;
+            waitTime3 = .12f;
         }
 
         if (!alive)
@@ -150,6 +161,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     {
         timeShot += Time.deltaTime;
         timeShot2 += Time.deltaTime;
+        timeShot3 += Time.deltaTime;
         if (timeShot > waitTime)
         {
             //dir = cannon.transform.position.normalized;
@@ -161,7 +173,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             tempBullet.GetComponent<BulletScript>().spawner = this.gameObject;
 
             Rigidbody2D bullRb = tempBullet.GetComponent<Rigidbody2D>();
-            bullRb.AddForce((directionGO.transform.position - cannon.transform.position) * Time.deltaTime, ForceMode2D.Impulse);
+            bullRb.AddForce((directionGO.transform.position - cannon.transform.position) * Time.deltaTime * 2f, ForceMode2D.Impulse);
             //bullRb.AddForce(Vector2.right * Time.deltaTime, ForceMode2D.Impulse);
             //bullRig.velocity = test;
             Physics2D.IgnoreCollision(tempBullet.GetComponent<Collider2D>(), GetComponent<BoxCollider2D>());
@@ -195,9 +207,34 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             timeShot2 = 0;
         }
 
+        if(cannon3)
+        {
+            if(timeShot3 > waitTime3)
+            {
+                //dir = cannon.transform.position.normalized;
+                //Debug.Log(dir);
+                GameObject tempBullet3;
+
+                tempBullet3 = Instantiate(bossBullet, cannon3.transform.position, directionCannon3.transform.rotation) as GameObject;
+
+                tempBullet3.GetComponent<BulletScript>().spawner = this.gameObject;
+
+                Rigidbody2D bullRb = tempBullet3.GetComponent<Rigidbody2D>();
+                bullRb.AddForce((directionCannon3.transform.position - cannon3.transform.position) * Time.deltaTime * 2f, ForceMode2D.Impulse);
+                //bullRb.AddForce(Vector2.right * Time.deltaTime, ForceMode2D.Impulse);
+                //bullRig.velocity = test;
+                Physics2D.IgnoreCollision(tempBullet3.GetComponent<Collider2D>(), GetComponent<BoxCollider2D>());
+                Physics2D.IgnoreCollision(tempBullet3.GetComponent<Collider2D>(), GetComponent<CircleCollider2D>());
+                Physics2D.IgnoreCollision(tempBullet3.GetComponent<Collider2D>(), tempBullet3.GetComponent<Collider2D>());
+                Destroy(tempBullet3, 3.0f);
+
+                timeShot3 = 0;
+            }
+        }
+
     }
 
-    public void takeDamage(float damageTaken)
+    public void takeDamage(float damageTaken, float nothin, int nothin2)
     {
         //Debug.Log(damageTaken + " damage the enemy took.");
         //healthRegen = boss_currentHealth;

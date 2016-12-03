@@ -89,7 +89,7 @@ public class CameraFollow : MonoBehaviour {
         target = target2;
 
         target2.transform.parent.transform.GetChild(0).GetChild(4).gameObject.SetActive(true);
-        yield return new WaitForSeconds(6.6f);
+        yield return new WaitForSeconds(8.5f);
         target = temp;
         yield return new WaitForSeconds(.6f);
         dampTime = 0.15f;
@@ -97,7 +97,7 @@ public class CameraFollow : MonoBehaviour {
 
     IEnumerator findPlayer()
     {
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.1f);
         target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 }

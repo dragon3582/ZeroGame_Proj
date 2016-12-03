@@ -9,10 +9,10 @@ public class ParticleCollision : MonoBehaviour {
     void OnParticleCollision(GameObject other)
     {
         damage = (Idamageable<float>)other.gameObject.GetComponent(typeof(Idamageable<float>));
-        damageBit = Mathf.Ceil(Random.Range(10f, 22f));
+        damageBit = Mathf.Ceil(Random.Range(17f, 28f));
         if (other.gameObject.tag == "Enemy Box" || other.gameObject.tag == "Boss")
         {
-            damage.takeDamage(damageBit);
+            damage.takeDamage(damageBit, .7f, 3);
             //Debug.Log(damageBit);
             //Destroy(other.gameObject);
             //subtract miniscule amounts of health here

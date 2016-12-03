@@ -17,6 +17,7 @@ public class BulletScript : MonoBehaviour {
     //private int count = 1;
     private int counter = 1;
     private float healthRegen = 50f;
+    private float damageMultiplier = .75f;
 
     void Start ()
     {
@@ -24,9 +25,9 @@ public class BulletScript : MonoBehaviour {
         if (this.tag == "Normal Bullet")
         {
             // original speed was 20f
-            speed = 40f;
+            speed = 50f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
-            damageNorm = Mathf.Ceil(Random.Range(23f, 26f));
+            damageNorm = Mathf.Ceil(Random.Range(25f, 29f));
         }
 
         if (this.tag == "Spread Bullet")
@@ -39,8 +40,8 @@ public class BulletScript : MonoBehaviour {
 
         if(this.tag == "Enemy Bullet")
         {
-            // original speed was 40f before being normalized in enemy movement scrip
-            speed = 750f;
+            // original speed was 40f before being normalized in enemy movement script
+            speed = 80f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
         }
 
@@ -98,11 +99,11 @@ public class BulletScript : MonoBehaviour {
                 hitEnemy = true;
                 if(this.tag == "Normal Bullet")
                 {
-                    damage.takeDamage(damageNorm);
+                    damage.takeDamage(damageNorm, damageMultiplier, 1);
                 }
                 else if(this.tag == "Spread Bullet")
                 {
-                    damage.takeDamage(damageSpread);
+                    damage.takeDamage(damageSpread, damageMultiplier, 2);
                 }
                 //Destroy(coll.gameObject);
                 Destroy(this.gameObject);

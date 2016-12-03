@@ -6,7 +6,7 @@ public class AutoType : MonoBehaviour
 {
     private float letterPause = 0.02f;
     private Text textTyping;
-    //public AudioClip sound;
+    public AudioClip sound;
 
     string message;
 
@@ -21,15 +21,25 @@ public class AutoType : MonoBehaviour
 
     IEnumerator TypeText()
     {
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(2.0f);
         foreach (char letter in message.ToCharArray())
         {
+            if(letter == '(')
+            {
+                letterPause = .05f;
+            }
             textTyping.text += letter;
-            yield return 0;
+            if(sound && letter != ' ')
+            {
+                this.gameObject.GetComponent<AudioSource>().PlayOneShot(sound);
+                yield return 0;
+            }
+            
             yield return new WaitForSeconds(letterPause);
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.2f);
         Destroy(this.gameObject);
     }
+
 }
