@@ -104,6 +104,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         if (!alive)
         {
             this.transform.GetChild(0).gameObject.SetActive(false);
+            Camera.main.GetComponent<CameraFollow>().camMidPoint = false;
             //boss_alpha.a = .5f;
             //this.GetComponent<SpriteRenderer>().color = boss_alpha;
             this.gameObject.GetComponent<Collider2D>().enabled = false;
@@ -114,7 +115,11 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             StartCoroutine(deadGuy());
             //InvokeRepeating("deadGuy()", .1f, .1f);
             winText.SetActive(true);
-            portal.gameObject.SetActive(true);
+            if(portal)
+            {
+                portal.gameObject.SetActive(true);
+            }
+
             if(deathCount == 1)
             {
                 GameObject tempPart;

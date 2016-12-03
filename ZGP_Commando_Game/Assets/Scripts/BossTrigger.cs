@@ -7,6 +7,7 @@ public class BossTrigger : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player")
         {
+            Camera.main.GetComponent<CameraFollow>().camMidPoint = true;
             this.gameObject.GetComponentInParent<BossAI>().enabled = true;
             this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
         }

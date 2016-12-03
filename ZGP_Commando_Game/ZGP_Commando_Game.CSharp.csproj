@@ -70,6 +70,7 @@
     <Compile Include="Assets\GhostSprites2D\Scripts\GhostSprites\GhostSprites.cs" />
     <Compile Include="Assets\Magic boundries\LightningBolt.cs" />
     <Compile Include="Assets\Magic boundries\Perlin.cs" />
+    <Compile Include="Assets\Scripts\AutoType.cs" />
     <Compile Include="Assets\Scripts\BossAI.cs" />
     <Compile Include="Assets\Scripts\BossTrigger.cs" />
     <Compile Include="Assets\Scripts\BulletScript.cs" />
