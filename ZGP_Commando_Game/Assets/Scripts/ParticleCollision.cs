@@ -8,6 +8,7 @@ public class ParticleCollision : MonoBehaviour {
 
     void OnParticleCollision(GameObject other)
     {
+        //Physics2D.IgnoreLayerCollision(8, 8);
         damage = (Idamageable<float>)other.gameObject.GetComponent(typeof(Idamageable<float>));
         damageBit = Mathf.Ceil(Random.Range(17f, 28f));
         if (other.gameObject.tag == "Enemy Box" || other.gameObject.tag == "Boss")
@@ -18,4 +19,5 @@ public class ParticleCollision : MonoBehaviour {
             //subtract miniscule amounts of health here
         }
     }
+
 }

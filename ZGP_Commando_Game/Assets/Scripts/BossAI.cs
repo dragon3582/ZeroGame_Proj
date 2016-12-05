@@ -240,26 +240,27 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
         //healthRegen = boss_currentHealth;
         boss_currentHealth -= damageTaken;
         //Debug.Log(boss_currentHealth);
-        StartCoroutine(updateTheUi(boss_currentHealth));
-        //updateTheUi(boss_currentHealth);
+        //StartCoroutine(updateTheUi(boss_currentHealth));
+        updateTheUi(boss_currentHealth);
         bossGrunt.Play();
         hit = true;
     }
 
-    IEnumerator updateTheUi(float currentHitP)
+    void updateTheUi(float currentHitP)
     {
+        
         float timerSec = 0f;
         float lerpin = .3f;
         currentHitP = (currentHitP / boss_maxHealth);
-        
+        /*
         while (timerSec < 1f)
         {
             timerSec += Time.deltaTime/lerpin;
             boss_fillHp.fillAmount = Mathf.Lerp(boss_fillHp.fillAmount, currentHitP, timerSec);
             yield return null;
         }
-        
-        //boss_fillHp.fillAmount = currentHP;
+        */
+        boss_fillHp.fillAmount = currentHitP;
         //yield return new WaitForEndOfFrame();
     }
 
@@ -267,7 +268,8 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
     {
         boss_currentHealth += hpRate;
         //Debug.Log(hpRate + " health regenerated from " + boss_currentHealth + " to " + (boss_currentHealth - hpRate));
-        StartCoroutine(updateTheUi(boss_currentHealth));
+        //StartCoroutine(updateTheUi(boss_currentHealth));
+        updateTheUi(boss_currentHealth);
     }
 
     IEnumerator flashHit()

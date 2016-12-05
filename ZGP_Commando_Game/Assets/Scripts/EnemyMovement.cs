@@ -13,6 +13,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     public GameObject[] powerups;
     public bool tree;
     public bool cacti;
+    public bool bossSeen;
     //public Sprite[] directions;
 
     #region private variables
@@ -44,6 +45,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     void Awake()
     {
         //xScale = transform.localScale.x;
+        bossSeen = false;
         cam = Camera.main.gameObject.GetComponent<CamShake2>();
         //alive = true;
         currentHealth = maxHealth;
@@ -71,7 +73,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
 
             distance = Vector2.Distance(this.transform.position, target.transform.position);
             //Debug.Log(distance);
-            if(distance < 23f)
+            if(distance < 23f || bossSeen)
             {
                 seen = true;
                 animate.SetBool("insight", true);
@@ -198,17 +200,17 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
     {
         if(cacti && bulletCheck == 2)
         {
-            Debug.Log("damage boost ice on catci!");
+            //Debug.Log("damage boost ice on catci!");
             damageTaken += (damageTaken * multiplier);
         }
         else if(tree && bulletCheck == 1)
         {
-            Debug.Log("damage boost fire on tree!");
+            //Debug.Log("damage boost fire on tree!");
             damageTaken += (damageTaken * multiplier);
         }
         else
         {
-            Debug.Log("no boost");
+            //Debug.Log("no boost");
         }
 
         float previousHealth = currentHealth;

@@ -29,7 +29,11 @@ public class StartText : MonoBehaviour {
 
     void Update()
     {
-        if(Input.anyKeyDown && buttonCheck && readText)
+        if (Input.GetButtonDown("ESCAPE BUTTON"))
+        {
+            Application.Quit();
+        }
+        else if (Input.anyKeyDown && buttonCheck && readText)
         {
             buttonCheck = false;
             barCheck = true;

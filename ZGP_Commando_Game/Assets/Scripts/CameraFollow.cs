@@ -89,8 +89,10 @@ public class CameraFollow : MonoBehaviour {
         target = target2;
 
         target2.transform.parent.transform.GetChild(0).GetChild(4).gameObject.SetActive(true);
+        temp.gameObject.GetComponent<PlayerMovement>().maxSpeed = 2.0f;
         yield return new WaitForSeconds(8.5f);
         target = temp;
+        temp.gameObject.GetComponent<PlayerMovement>().maxSpeed = 13.0f;
         yield return new WaitForSeconds(.6f);
         dampTime = 0.15f;
     }

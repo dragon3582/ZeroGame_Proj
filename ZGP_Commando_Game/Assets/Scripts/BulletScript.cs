@@ -12,12 +12,15 @@ public class BulletScript : MonoBehaviour {
     private bool hitEnemy;
     private float damageNorm;// = 25.0f;   original values i used before i randomized them a little
     private float damageSpread;// = 30.0f;
+    private float damageLightning = 12f;
     private int enemyDamage = 1;
     private float speed;
     //private int count = 1;
     private int counter = 1;
     private float healthRegen = 50f;
     private float damageMultiplier = .75f;
+    private float timer;
+    private float waitBefore = 2f;
 
     void Start ()
     {
@@ -48,7 +51,7 @@ public class BulletScript : MonoBehaviour {
         if (this.tag == "Boss bullet")
         {
             // original speed was 450f
-            speed = 1050f;
+            speed = 650f;
             this.GetComponent<Rigidbody2D>().velocity *= speed;
         }
 
@@ -126,6 +129,22 @@ public class BulletScript : MonoBehaviour {
             //Destroy(this.gameObject);
         }
 
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        damage = (Idamageable<float>)other.gameObject.GetComponent(typeof(Idamageable<float>));
+        timer += Time.deltaTime;
+        if (other.gameObject.tag == "Enemy Box" || other.gameObject.tag == "Boss")
+        {
+            if(timer > waitBefore)
+            {
+                hitEnemy = true;
+                damage.takeDamage(damageLightning);
+                timer = 0f;
+            }
+            
+        }
     }
 
     /*

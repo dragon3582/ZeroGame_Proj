@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour, Idamageable<int> {
 
-    public float maxSpeed = 9f;
+    public float maxSpeed = 13f;
     public GameObject fireDirection;
     public GameObject bullet;
     public GameObject hitCountGO;
@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     public Sprite[] idles;
     public bool male;
     public bool female;
+    public int bulletCount;
 
     #region private variables
     private AudioSource audioS;
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
     
     void Awake ()
     {
+        bulletCount = 0;
         audioS = GetComponent<AudioSource>();
         cam = Camera.main.gameObject.GetComponent<CamShake2>();
         _player = GetComponent<Rigidbody2D>();
@@ -139,9 +141,6 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
         if (Input.GetButtonDown("Fire1"))
         {
             fireShot = true;
-            //typeOfShot();
-            //Debug.Log(_currentDir);
-            //Debug.Log(_previousDir);
         }
         
         if(Input.GetKeyDown("escape") || Input.GetButtonDown("ESCAPE BUTTON"))
@@ -255,6 +254,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
 
             if (timestamp <= Time.time)
             {
+                bulletCount++;
                 timestamp = Time.time + cooldownRate;
                 tempBullet = Instantiate(bullet, fireDirection.transform.position, fireDirection.transform.rotation) as GameObject;
 
@@ -292,6 +292,7 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
 
             if(timestamp <= Time.time)
             {
+                bulletCount++;
                 timestamp = Time.time + cooldownRate;
                 float torqueSpin = 45f;
 
@@ -335,18 +336,22 @@ public class PlayerMovement : MonoBehaviour, Idamageable<int> {
             //GameObject tempPart;
 
             // original cooldown was .4f
-            cooldownRate = .04f;
+            cooldownRate = .1f;
 
             if (timestamp <= Time.time)
             {
+                bulletCount++;
                 timestamp = Time.time + cooldownRate;
                 
                 tempBullet = Instantiate(bullet, fireDirection.transform.position, fireDirection.transform.rotation) as GameObject;
 
+                float spin = 45f;
                 Rigidbody2D tempRigid;
                 tempRigid = tempBullet.GetComponent<Rigidbody2D>();
 
                 tempRigid.AddForce(_currentDir * bulletSpeed * Time.deltaTime, ForceMode2D.Impulse);
+
+                tempRigid.AddTorque((bulletSpeed * spin) * Time.deltaTime, ForceMode2D.Impulse);
 
                 Physics2D.IgnoreCollision(tempBullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
                 Physics2D.IgnoreLayerCollision(8, 8);
