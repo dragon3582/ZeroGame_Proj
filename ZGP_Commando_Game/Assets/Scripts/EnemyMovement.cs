@@ -187,7 +187,7 @@ public class EnemyMovement : MonoBehaviour, Idamageable<float> {
             bullRig.AddForce((target.transform.position - transform.position).normalized * Time.deltaTime * 15f, ForceMode2D.Impulse);
             //bullRig.velocity = test;
             Physics2D.IgnoreCollision(tempBul.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            Destroy(tempBul, 3.0f);
+            Destroy(tempBul, 1.7f);
 
             timer = 0;
 

@@ -99,7 +99,7 @@ public class MusicAcrossScenes : MonoBehaviour {
         while (t < 1.0f)
         {
             t += Time.deltaTime/dur;
-            audioVol.volume = Mathf.Lerp(audioVol.volume, .7f, t);
+            audioVol.volume = Mathf.Lerp(audioVol.volume, .8f, t);
             audioVol.Play();
             yield return new WaitForSeconds(.02f);
         }

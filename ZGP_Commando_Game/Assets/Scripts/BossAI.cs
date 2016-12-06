@@ -100,7 +100,7 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             enrage.SetBool("enraged", true);
             // original wait times here were .12f and .27f
             waitTime = .05f;
-            waitTime2 = .07f;
+            waitTime2 = .12f;
             waitTime3 = .05f;
         }
         else if (boss_currentHealth > (boss_maxHealth / 2))
@@ -173,13 +173,13 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             tempBullet.GetComponent<BulletScript>().spawner = this.gameObject;
 
             Rigidbody2D bullRb = tempBullet.GetComponent<Rigidbody2D>();
-            bullRb.AddForce((directionGO.transform.position - cannon.transform.position) * Time.deltaTime * 2f, ForceMode2D.Impulse);
+            bullRb.AddForce((directionGO.transform.position - cannon.transform.position) * Time.deltaTime * 2.6f, ForceMode2D.Impulse);
             //bullRb.AddForce(Vector2.right * Time.deltaTime, ForceMode2D.Impulse);
             //bullRig.velocity = test;
             Physics2D.IgnoreCollision(tempBullet.GetComponent<Collider2D>(), GetComponent<BoxCollider2D>());
             Physics2D.IgnoreCollision(tempBullet.GetComponent<Collider2D>(), GetComponent<CircleCollider2D>());
             Physics2D.IgnoreCollision(tempBullet.GetComponent<Collider2D>(), tempBullet.GetComponent<Collider2D>());
-            Destroy(tempBullet, 3.0f);
+            Destroy(tempBullet, 2.5f);
 
             timeShot = 0;
         }
@@ -195,14 +195,14 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
             tempBullet2.GetComponent<BulletScript>().spawner = this.gameObject;
 
             Rigidbody2D bullRb2 = tempBullet2.GetComponent<Rigidbody2D>();
-            bullRb2.AddForce((playerTarget.transform.position - cannon2.transform.position).normalized * 2f * Time.deltaTime, ForceMode2D.Impulse);
+            bullRb2.AddForce((playerTarget.transform.position - cannon2.transform.position).normalized * Time.deltaTime * 5f, ForceMode2D.Impulse);
 
             Physics2D.IgnoreCollision(tempBullet2.GetComponent<Collider2D>(), GetComponent<BoxCollider2D>());
             Physics2D.IgnoreCollision(tempBullet2.GetComponent<Collider2D>(), GetComponent<CircleCollider2D>());
             Physics2D.IgnoreCollision(tempBullet2.GetComponent<Collider2D>(), tempBullet2.GetComponent<Collider2D>());
 
             Physics2D.IgnoreLayerCollision(10, 10);
-            Destroy(tempBullet2, 4.0f);
+            Destroy(tempBullet2, 2.5f);
 
             timeShot2 = 0;
         }
@@ -220,13 +220,13 @@ public class BossAI : MonoBehaviour, Idamageable<float> {
                 tempBullet3.GetComponent<BulletScript>().spawner = this.gameObject;
 
                 Rigidbody2D bullRb = tempBullet3.GetComponent<Rigidbody2D>();
-                bullRb.AddForce((directionCannon3.transform.position - cannon3.transform.position) * Time.deltaTime * 2f, ForceMode2D.Impulse);
+                bullRb.AddForce((directionCannon3.transform.position - cannon3.transform.position) * Time.deltaTime * 2.6f, ForceMode2D.Impulse);
                 //bullRb.AddForce(Vector2.right * Time.deltaTime, ForceMode2D.Impulse);
                 //bullRig.velocity = test;
                 Physics2D.IgnoreCollision(tempBullet3.GetComponent<Collider2D>(), GetComponent<BoxCollider2D>());
                 Physics2D.IgnoreCollision(tempBullet3.GetComponent<Collider2D>(), GetComponent<CircleCollider2D>());
                 Physics2D.IgnoreCollision(tempBullet3.GetComponent<Collider2D>(), tempBullet3.GetComponent<Collider2D>());
-                Destroy(tempBullet3, 3.0f);
+                Destroy(tempBullet3, 2.5f);
 
                 timeShot3 = 0;
             }
